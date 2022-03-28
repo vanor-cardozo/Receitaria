@@ -7,9 +7,9 @@ function Login() {
   // const [isDisabled, setIsDisabled] = useState(true);
 
   handleChange = ({ target: { value, name } }) => {
-     setEmail({ value });
-     setPassword({ value });
-   };
+    setEmail({ value });
+    setPassword({ value });
+  };
 
   // validateForm = () => {
   //   const PASSWORD_MIN_LENGTH = 6;
