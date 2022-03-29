@@ -18,7 +18,54 @@ function Header(props) {
         <img data-testid="search-top-btn" src={ profileSearch } alt="search" />
       </button>
       {
-        showSearchInput && <input data-testid="search-input" />
+        showSearchInput && (
+          <form onSubmit={ (event) => event.preventDefault() }>
+            <label htmlFor="search">
+              <input id="search" data-testid="search-input" placeholder="Search Recipe" />
+            </label>
+
+            <label htmlFor="ingredients">
+              <input
+                id="ingredients"
+                type="radio"
+                data-testid="ingredient-search-radio"
+                name="radio"
+              />
+              {' '}
+              Ingredients
+            </label>
+
+            <label htmlFor="name">
+              <input
+                id="name"
+                type="radio"
+                data-testid="name-search-radio"
+                name="radio"
+              />
+              {' '}
+              Name
+            </label>
+
+            <label htmlFor="first-letter">
+              <input
+                id="first-letter"
+                type="radio"
+                data-testid="first-letter-search-radio"
+                name="radio"
+              />
+              First Letter
+            </label>
+
+            <button
+              id="button"
+              type="submit"
+              label="button"
+              data-testid="exec-search-btn"
+            >
+              Search
+            </button>
+          </form>
+        )
       }
     </header>
   );
