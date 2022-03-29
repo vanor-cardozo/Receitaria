@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import localStorageLogin from '../services/localStorage';
 
 function Login() {
   const history = useHistory();
@@ -11,18 +12,15 @@ function Login() {
     const PASSWORD_MIN_LENGTH = 6;
     const regexEmail = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
     const isEmailValid = regexEmail.test(String(email).toLowerCase());
-    const isButtonValid = isEmailValid && PASSWORD_MIN_LENGTH <= password.length;
+    const isButtonValid = isEmailValid && PASSWORD_MIN_LENGTH < password.length;
     if (isButtonValid) return setIsDisabled(false);
     return setIsDisabled(true);
   }, [email, password]);
 
-  const handleClick = () => {
-    localStorage.setItem('mealsToken', 1);
-    localStorage.setItem('cocktailsToken', 1);
-    const user = { email };
-    localStorage.setItem('user', JSON.stringify(user));
+  function handleClick() {
+    localStorageLogin({ email });
     history.push('foods');
-  };
+  }
 
   return (
     <form>
