@@ -36,7 +36,7 @@ function Login() {
       <input
         type="password"
         name="password"
-        placeholder="A senha deve ter 6 dígitos"
+        placeholder="Senha de 7 dígitos ou mais"
         data-testid="password-input"
         onChange={ ({ target: { value } }) => setPassword(value) }
       />
