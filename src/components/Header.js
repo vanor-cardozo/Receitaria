@@ -19,7 +19,10 @@ function Header(props) {
       </button>
       {
         showSearchInput && (
-          <form onSubmit={ (event) => event.preventDefault() }>
+          <form
+            data-testid="form-add-input"
+            onSubmit={ (event) => event.preventDefault() }
+          >
             <label htmlFor="search">
               <input id="search" data-testid="search-input" placeholder="Search Recipe" />
             </label>
@@ -72,7 +75,11 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
+
+Header.defaultProps = {
+  title: '',
 };
 
 export default Header;
