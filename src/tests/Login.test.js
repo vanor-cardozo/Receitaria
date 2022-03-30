@@ -32,7 +32,7 @@ describe('Teste o componente <Login />', () => {
     expect(buttonEl).toBeInTheDocument();
   });
 
-  test('Ao clicar no botão Entrar redireciona para a página foods', () => {
+  test('Ao clicar no botão Entrar redireciona para a página de receitas.', () => {
     const { history } = renderWithRouter(<Login />);
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
