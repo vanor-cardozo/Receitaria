@@ -13,6 +13,7 @@ function Header(props) {
   const [searchType, setSearchType] = useState('');
   const [searchRecipe, setSearchRecipe] = useState('');
   const { setAPI } = useContext(RecipesContext);
+  console.log(setAPI);
 
   console.log(searchType, searchRecipe);
 
