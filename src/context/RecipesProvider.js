@@ -1,21 +1,22 @@
-import React from 'react';
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import './App.css';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
+import fetchFoods from '../utils/fetchRecipes';
 
 function RecipesProvider({ children }) {
-  // const [data, setData] = useState([]);
+  const [API, setAPI] = useState();// const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   const addPlanets = async () => {
-  //     const dataPlanets = await starWarsApi();
-  //     setData(dataPlanets);
-  //   };
-  //   addPlanets();
-  // }, []);
+  useEffect(() => {
+    if (API) fetchFoods(API);
+  }, [API]);
+
+  const values = {
+    setAPI,
+  };
+
   return (
-    <RecipesContext.Provider value="ok">
+    <RecipesContext.Provider value={ values }>
       { children }
     </RecipesContext.Provider>
   );

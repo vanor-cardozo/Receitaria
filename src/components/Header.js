@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import profileSearch from '../images/searchIcon.svg';
+import RecipesContext from '../context/RecipesContext';
 
 function Header(props) {
   const { title } = props;
   const history = useHistory();
   const [showSearchInput, setShowSearchInput] = useState(false);
+
+  const [searchType, setSearchType] = useState('');
+  const [searchRecipe, setSearchRecipe] = useState('');
+  const { setAPI } = useContext(RecipesContext);
+
+  console.log(searchType, searchRecipe);
+
   return (
     <header>
       <button onClick={ () => history.push('/profile') } type="button">
@@ -24,46 +32,49 @@ function Header(props) {
             onSubmit={ (event) => event.preventDefault() }
           >
             <label htmlFor="search">
-              <input id="search" data-testid="search-input" placeholder="Search Recipe" />
+              <input
+                onChange={ ({ target }) => setSearchRecipe(target.value) }
+                id="search"
+                data-testid="search-input"
+                placeholder="Search Recipe"
+              />
             </label>
-
             <label htmlFor="ingredients">
               <input
-                id="ingredients"
+                id="Ingredients"
                 type="radio"
                 data-testid="ingredient-search-radio"
                 name="radio"
+                onChange={ ({ target }) => (setSearchType(target.id)) }
               />
-              {' '}
               Ingredients
             </label>
-
             <label htmlFor="name">
               <input
-                id="name"
+                id="Name"
                 type="radio"
                 data-testid="name-search-radio"
                 name="radio"
+                onChange={ ({ target }) => (setSearchType(target.id)) }
               />
-              {' '}
               Name
             </label>
-
             <label htmlFor="first-letter">
               <input
-                id="first-letter"
+                id="Firstletter"
                 type="radio"
                 data-testid="first-letter-search-radio"
                 name="radio"
+                onChange={ ({ target }) => (setSearchType(target.id)) }
               />
               First Letter
             </label>
-
             <button
               id="button"
               type="submit"
               label="button"
               data-testid="exec-search-btn"
+              onClick={ () => setAPI({ searchType, searchRecipe }) }
             >
               Search
             </button>
