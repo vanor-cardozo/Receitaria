@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
 
 function Profile() {
@@ -8,6 +9,7 @@ function Profile() {
       <HeaderWithoutSearchButton title="Profile" />
       <h1>Profile</h1>
       <p>{ email }</p>
+      <Footer />
     </>
   );
 }
