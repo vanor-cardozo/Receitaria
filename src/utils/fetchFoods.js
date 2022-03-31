@@ -1,8 +1,8 @@
 const fetchFoods = async (arg) => {
   const { searchType, searchRecipe } = arg;
-  console.log(searchRecipe, searchType);
   if (searchType === 'Firstletter' && searchRecipe.length > 1) {
-    return global.alert('Your search must have only 1 (one) character');
+    global.alert('Your search must have only 1 (one) character');
+    return { meals: [] };
   }
   let URL;
   if (searchType === 'Name') {
@@ -14,10 +14,12 @@ const fetchFoods = async (arg) => {
   if (searchType === 'Firstletter') {
     URL = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchRecipe}`;
   }
-  console.log('entrei');
   const endpoint = await fetch(URL);
   const response = await endpoint.json();
-  console.log(response);
+  if (response.meals === null) {
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    return { meals: [] };
+  }
   return response;
 };
 

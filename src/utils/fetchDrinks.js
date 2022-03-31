@@ -1,7 +1,8 @@
 const fetchDrinks = async (arg) => {
   const { searchType, searchRecipe } = arg;
   if (searchType === 'Firstletter' && searchRecipe.length > 1) {
-    return global.alert('Your search must have only 1 (one) character');
+    global.alert('Your search must have only 1 (one) character');
+    return { drinks: [] };
   }
   let URL;
   if (searchType === 'Name') {
@@ -15,6 +16,10 @@ const fetchDrinks = async (arg) => {
   }
   const endpoint = await fetch(URL);
   const response = await endpoint.json();
+  if (response.drinks === null) {
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    return { drinks: [] };
+  }
   return response;
 };
 
