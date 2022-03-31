@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
 
 function ExploreFoods() {
@@ -6,6 +7,7 @@ function ExploreFoods() {
     <>
       <HeaderWithoutSearchButton title="Explore Foods" />
       <h1>Explore Foods</h1>
+      <Footer />
     </>
   );
 }

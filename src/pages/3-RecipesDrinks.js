@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../utils/fetchDrinks';
@@ -19,6 +20,7 @@ function RecipesDrinks() {
     <>
       <Header title="Drinks" />
       <h1>Tela principal de receitas de bebidas.</h1>
+      <Footer />
     </>
   );
 }
