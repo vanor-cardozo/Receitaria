@@ -26,8 +26,8 @@ function App() {
       <RecipesProvider>
         <Switch>
           <Route exact path="/" component={ Login } />
-          <Route path="/foods/:id" component={ RecipesDetailsFoods } />
-          <Route path="/drinks/:id" component={ RecipesDetailsDrinks } />
+          <Route exact path="/foods/:id" component={ RecipesDetailsFoods } />
+          <Route exact path="/drinks/:id" component={ RecipesDetailsDrinks } />
           <Route exact path="/foods/:id/in-progress" component={ FoodsInProgress } />
           <Route exact path="/drinks/:id/in-progress" component={ DrinksInProgress } />
           <Route exact path="/explore" component={ Explore } />
@@ -51,8 +51,8 @@ function App() {
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/done-recipes" component={ RecipesDone } />
           <Route exact path="/favorite-recipes" component={ RecipesFavorites } />
-          <Route path="/foods" component={ Recipes } />
-          <Route path="/drinks" component={ RecipesDrinks } />
+          <Route exact path="/foods" component={ Recipes } />
+          <Route exact path="/drinks" component={ RecipesDrinks } />
         </Switch>
       </RecipesProvider>
     </BrowserRouter>
