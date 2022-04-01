@@ -8,7 +8,7 @@ function ExploreDrinks() {
     <>
       <HeaderWithoutSearchButton title="Explore Drinks" />
       <OptionsDrinks />
-      {/* <h1>Explore Drinks</h1> */} 
+      {/* <h1>Explore Drinks</h1> */}
       <Footer />
     </>
   );
