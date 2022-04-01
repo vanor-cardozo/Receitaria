@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
-import OptionsDrinks from '../components/OptionsDrinks';
+import OptionsDrinks from '../components/OptionsDrinks'; // Commit novo PR
 
 function ExploreDrinks() {
   return (

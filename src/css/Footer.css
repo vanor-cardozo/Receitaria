@@ -1,11 +1,13 @@
 .footer {
+
   /* align-items: end;
   display: flex; */
-  position: fixed;
-  bottom: 0;
   background-color: gray;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
+  position: fixed;
+
   /* margin-bottom: 0px; */
 }
