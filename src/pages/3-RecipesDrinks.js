@@ -37,7 +37,7 @@ function RecipesDrinks() {
   }
   const MAX_DRINKS = 12;
   const drinks = drinksApi && drinksApi.drinks.filter((_, i) => i < MAX_DRINKS);
-
+  // salva essa droga
   return (
     <>
       <Header title="Drinks" />
