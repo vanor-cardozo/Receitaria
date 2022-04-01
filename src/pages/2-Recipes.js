@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import FiltersRecipe from '../components/FiltersRecipe';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoods from '../utils/fetchFoods';
+import fetchFoodsDefault from '../utils/fetchFoodsDefault';
 
 function Recipes() {
   const { setFoodsApi, foodsApi, API } = useContext(RecipesContext);
@@ -19,6 +21,14 @@ function Recipes() {
     }
   }, [API, setFoodsApi]);
 
+  useEffect(() => {
+    const api = async () => {
+      const result = await fetchFoodsDefault();
+      setFoodsApi(result);
+    };
+    api();
+  }, [setFoodsApi]);
+
   if (foodsApi && foodsApi.meals.length === 1) {
     const id = foodsApi.meals[0].idMeal;
     history.push(`/foods/${id}`);
@@ -31,6 +41,7 @@ function Recipes() {
     <>
       <Header title="Foods" />
       <h1>Tela principal de receitas de comidas.</h1>
+      <FiltersRecipe categoryType="foods" />
       {
         foodsApi && foodsApi.meals.length > 1
           ? meals.map((food, index) => (
