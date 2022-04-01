@@ -9,6 +9,7 @@ function RecipesProvider({ children }) {
   const [drinksApi, setDrinksApi] = useState();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   // useEffect(() => {
   //   if (API) {
@@ -31,6 +32,8 @@ function RecipesProvider({ children }) {
     setEmail,
     password,
     setPassword,
+    redirect,
+    setRedirect,
   };
 
   return (
