@@ -1,12 +1,14 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
+import OptionsFoods from '../components/OptionsFoods';
 
 function ExploreFoods() {
   return (
     <>
       <HeaderWithoutSearchButton title="Explore Foods" />
-      <h1>Explore Foods</h1>
+      <OptionsFoods />
+      {/* <h1>Explore Foods</h1> */}
       <Footer />
     </>
   );

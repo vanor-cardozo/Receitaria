@@ -12,10 +12,7 @@ function Header(props) {
 
   const [searchType, setSearchType] = useState('');
   const [searchRecipe, setSearchRecipe] = useState('');
-  const { setAPI } = useContext(RecipesContext);
-  console.log(setAPI);
-
-  console.log(searchType, searchRecipe);
+  const { setAPI, setRedirect } = useContext(RecipesContext);
 
   return (
     <header>
@@ -75,7 +72,10 @@ function Header(props) {
               type="submit"
               label="button"
               data-testid="exec-search-btn"
-              onClick={ () => setAPI({ searchType, searchRecipe }) }
+              onClick={ () => {
+                setRedirect(true);
+                setAPI({ searchType, searchRecipe });
+              } }
             >
               Search
             </button>
