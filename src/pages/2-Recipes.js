@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import FiltersRecipe from '../components/FiltersRecipe';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoods from '../utils/fetchFoods';
+import fetchFoodsDefault from '../utils/fetchFoodsDefault';
 
 function Recipes() {
-  const { setFoodsApi, foodsApi, API } = useContext(RecipesContext);
+  const {
+    setFoodsApi, foodsApi, API, redirect, setRedirect } = useContext(RecipesContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -19,9 +22,18 @@ function Recipes() {
     }
   }, [API, setFoodsApi]);
 
-  if (foodsApi && foodsApi.meals.length === 1) {
+  useEffect(() => {
+    const api = async () => {
+      const result = await fetchFoodsDefault();
+      setFoodsApi(result);
+    };
+    api();
+  }, [setFoodsApi]);
+
+  if (foodsApi && foodsApi.meals.length === 1 && redirect) {
     const id = foodsApi.meals[0].idMeal;
     history.push(`/foods/${id}`);
+    setRedirect(false);
   }
 
   const MAX_MEALS = 12;
@@ -31,10 +43,15 @@ function Recipes() {
     <>
       <Header title="Foods" />
       <h1>Tela principal de receitas de comidas.</h1>
+      <FiltersRecipe categoryType="foods" />
       {
-        foodsApi && foodsApi.meals.length > 1
-          ? meals.map((food, index) => (
-            <div key={ food.idMeal } data-testid={ `${index}-recipe-card` }>
+        foodsApi && meals.map((food, index) => (
+          <Link
+            key={ food.idMeal }
+            data-testid={ `${index}-recipe-card` }
+            to={ `/foods/${foodsApi.meals[index].idMeal}` }
+          >
+            <div>
               <h4 data-testid={ `${index}-card-name` }>{ food.strMeal }</h4>
               <img
                 src={ food.strMealThumb }
@@ -42,8 +59,8 @@ function Recipes() {
                 width="20%"
                 data-testid={ `${index}-card-img` }
               />
-            </div>))
-          : ''
+            </div>
+          </Link>))
       }
       <Footer />
     </>
