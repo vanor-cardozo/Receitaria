@@ -7,6 +7,8 @@ function RecipesProvider({ children }) {
   const [API, setAPI] = useState();// const [data, setData] = useState([]);
   const [foodsApi, setFoodsApi] = useState();
   const [drinksApi, setDrinksApi] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // useEffect(() => {
   //   if (API) {
@@ -25,6 +27,10 @@ function RecipesProvider({ children }) {
     API,
     drinksApi,
     setDrinksApi,
+    email,
+    setEmail,
+    password,
+    setPassword,
   };
 
   return (
