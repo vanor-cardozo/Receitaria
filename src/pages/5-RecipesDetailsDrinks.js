@@ -84,7 +84,18 @@ function RecipesDetailsDrinks() {
                 ))
               }
             </ul>
-            <button type="button" data-testid="start-recipe-btn">Start</button>
+            <button
+              style={ {
+                alignItems: 'end',
+                bottom: '0',
+                display: 'flex',
+                position: 'fixed',
+              } }
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              Start Recipe
+            </button>
           </div>
         )
       }
