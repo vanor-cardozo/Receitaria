@@ -8,21 +8,23 @@ function FoodsInProgress() {
   return (
     <section>
       <img
-        src={ strMealThumb }
-        alt={ strMeal }
+        // src={ strMealThumb }
+        alt="strMeal"
         data-testid="recipe-photo"
       />
-      <h3 data-testid="recipe-title">{ strMeal }</h3>
+      <h3 data-testid="recipe-title">
+        {/* { strMeal } */}
+      </h3>
       <ShareButton />
       <FavoriteButton />
       <p data-testid="recipe-category">
-        { strCategory }
+        {/* { strCategory } */}
       </p>
       <div>
         <h3>local para os ingredients</h3>
       </div>
       <p data-testid="instructions">
-        { strInstructions }
+        {/* { strInstructions } */}
       </p>
       <button data-testid="finish-recipe-btn" type="button">
         Finish Recipe

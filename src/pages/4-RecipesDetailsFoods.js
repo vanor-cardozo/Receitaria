@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { fetchDetailsFoods } from '../utils/fetchDetails';
 import fetchRecomendationsDrinks from '../utils/fetchRecomendations';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
+  const history = useHistory();
   const [foodDetail, setFoodDetail] = useState();
   const [recomendations, SetRecomendations] = useState([]);
   // const [video, setVideo] = useState();
@@ -58,7 +59,7 @@ function RecipesDetailsFoods() {
               {
                 ingredients.map((ingredient, index) => (
                   <li
-                    key={ ingredient }
+                    key={ index }
                     data-testid={ `${index}-ingredient-name-and-measure` }
                   >
                     {`${ingredient} - ${measure[index]}`}
@@ -92,6 +93,7 @@ function RecipesDetailsFoods() {
               } }
               type="button"
               data-testid="start-recipe-btn"
+              onClick={ () => history.push(`/foods/${id}/in-progress`) }
             >
               Start Recipe
             </button>

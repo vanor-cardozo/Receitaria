@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import fetchDetailsDrinks from '../utils/fetchDetails';
 import { fetchRecomendationsFoods } from '../utils/fetchRecomendations';
 
 function RecipesDetailsDrinks() {
   const { id } = useParams();
+  const history = useHistory();
   const [drinkDetail, setDrinkDetail] = useState();
   const [recomendations, SetRecomendations] = useState([]);
   // const [video, setVideo] = useState();
@@ -93,6 +94,7 @@ function RecipesDetailsDrinks() {
               } }
               type="button"
               data-testid="start-recipe-btn"
+              onClick={ () => history.push(`/drinks/${id}/in-progress`) }
             >
               Start Recipe
             </button>
