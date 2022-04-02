@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import ShareButton from '../components/ShareButton';
 import fetchDetailsDrinks from '../utils/fetchDetails';
 import { fetchRecomendationsFoods } from '../utils/fetchRecomendations';
 
@@ -53,7 +54,7 @@ function RecipesDetailsDrinks() {
               data-testid="recipe-photo"
             />
             <h2 data-testid="recipe-title">{ drinkDetail.strDrink }</h2>
-            <button data-testid="share-btn" type="button">Share</button>
+            <ShareButton path={ history.location.pathname } />
             <button data-testid="favorite-btn" type="button">Favorite</button>
             <p data-testid="recipe-category">{ drinkDetail.strAlcoholic }</p>
             <ul>
