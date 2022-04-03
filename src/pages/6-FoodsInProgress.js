@@ -1,5 +1,5 @@
 import React from 'react';
-import FavoriteButton from '../components/FavoriteButton';
+import FavoriteButtonFoods from '../components/FavoriteButtonFoods';
 import ShareButton from '../components/ShareButton';
 
 function FoodsInProgress() {
@@ -16,7 +16,7 @@ function FoodsInProgress() {
         {/* { strMeal } */}
       </h3>
       <ShareButton />
-      <FavoriteButton />
+      <FavoriteButtonFoods />
       <p data-testid="recipe-category">
         {/* { strCategory } */}
       </p>

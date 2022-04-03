@@ -3,10 +3,15 @@ import { useParams, useHistory } from 'react-router-dom';
 import { fetchDetailsFoods } from '../utils/fetchDetails';
 import fetchRecomendationsDrinks from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
-import FavoriteButton from '../components/FavoriteButton';
+import FavoriteButtonFoods from '../components/FavoriteButtonFoods';
 import { useDetail, useShare, useTypeString } from '../context/DetailContext';
 import isStartedFood from '../services/isStartedLocalStorage';
 import { startRecipeFood } from '../utils/startRecipe';
+import getIngredients from '../utils/ingredients';
+import getMeasure from '../utils/measure';
+import Ingredients from '../components/Ingredients';
+import styleDetailFood from '../css/RecipeDetailsFoods';
+import Recomendations from '../components/Recomendations';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -28,20 +33,8 @@ function RecipesDetailsFoods() {
     api();
   }, [id, setFoodDetail, setTypeString, setSharePath, pathname]);
 
-  const ingredients = [];
-  const measure = [];
-  const INGREDIENTS_NUMBER = 20;
-
-  const getIngredientsAndMeasure = () => {
-    for (let i = 1; i < INGREDIENTS_NUMBER; i += 1) {
-      if (foodDetail[`strIngredient${i}`] !== '') {
-        ingredients.push(foodDetail[`strIngredient${i}`]);
-      }
-      if (foodDetail[`strMeasure${i}`] !== ' ') {
-        measure.push(foodDetail[`strMeasure${i}`]);
-      }
-    }
-  };
+  let ingredients = [];
+  let measure = [];
 
   // const req = async (arg) => {
   //   const videoURL = `https://www.youtube.com/oembed?url=${arg}&format=json`;
@@ -51,7 +44,8 @@ function RecipesDetailsFoods() {
   // };
 
   if (foodDetail) {
-    getIngredientsAndMeasure();
+    ingredients = getIngredients(foodDetail);
+    measure = getMeasure(foodDetail);
     // req(foodDetail.strYoutube);
   }
 
@@ -67,47 +61,23 @@ function RecipesDetailsFoods() {
               data-testid="recipe-photo"
             />
             <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
+
             <ShareButton />
-            <FavoriteButton />
+            <FavoriteButtonFoods />
+
             <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
-            <ul>
-              {
-                ingredients.map((ingredient, index) => (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
-                    {`${ingredient} - ${measure[index]}`}
-                  </li>
-                ))
-              }
-            </ul>
+
+            <Ingredients ingredients={ ingredients } measure={ measure } />
+
             <p data-testid="instructions">{ foodDetail.strInstructions }</p>
             <iframe title="youtubeDetail" data-testid="video" />
-            <ul>
-              {
-                recomendations.map((rec, index) => (
-                  <li
-                    style={ { display: 'inline-block' } }
-                    key={ rec.idDrink }
-                    data-testid={ `${index}-recomendation-card` }
-                  >
-                    <span data-testid={ `${index}-recomendation-title` }>
-                      { ` ${rec.strDrink} - ` }
-                    </span>
-                  </li>
-                ))
-              }
-            </ul>
+
+            <Recomendations recomendations={ recomendations } />
+
             <button
-              style={ {
-                alignItems: 'end',
-                bottom: '0',
-                display: 'flex',
-                position: 'fixed',
-              } }
               type="button"
               data-testid="start-recipe-btn"
+              style={ styleDetailFood }
               onClick={ () => {
                 startRecipeFood(id, ingredients);
                 history.push(`/foods/${id}/in-progress`);
