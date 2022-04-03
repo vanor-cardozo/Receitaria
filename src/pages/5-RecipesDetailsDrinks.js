@@ -3,22 +3,30 @@ import { useParams, useHistory } from 'react-router-dom';
 import { fetchRecomendationsFoods } from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
 import fetchDetailsDrinks from '../utils/fetchDetails';
-import FavoriteButton from '../components/FavoriteButton';
+import { useDetail, useShare, useTypeString } from '../context/DetailContext';
+import FavoriteButtonDrinks from '../components/FavoriteButtonDrinks';
+import { isStartedDrink } from '../services/isStartedLocalStorage';
+import startRecipeDrink from '../utils/startRecipe';
 
 function RecipesDetailsDrinks() {
   const { id } = useParams();
   const history = useHistory();
-  const [drinkDetail, setDrinkDetail] = useState();
+  const { location: { pathname } } = history;
+  const { drinkDetail, setDrinkDetail } = useDetail();
+  const { setTypeString } = useTypeString();
+  const { setSharePath } = useShare();
   const [recomendations, SetRecomendations] = useState([]);
   // const [video, setVideo] = useState();
 
   useEffect(() => {
     const api = async () => {
       setDrinkDetail(await fetchDetailsDrinks(id));
+      setTypeString('drink');
+      setSharePath(pathname);
       SetRecomendations(await fetchRecomendationsFoods());
     };
     api();
-  }, [id]);
+  }, [id, pathname, setDrinkDetail, setSharePath, setTypeString]);
 
   const ingredients = [];
   const measure = [];
@@ -55,8 +63,8 @@ function RecipesDetailsDrinks() {
               data-testid="recipe-photo"
             />
             <h2 data-testid="recipe-title">{ drinkDetail.strDrink }</h2>
-            <ShareButton path={ history.location.pathname } />
-            <FavoriteButton obj={ drinkDetail } typeString="drink" />
+            <ShareButton />
+            <FavoriteButtonDrinks />
             <p data-testid="recipe-category">{ drinkDetail.strAlcoholic }</p>
             <ul>
               {
@@ -96,9 +104,16 @@ function RecipesDetailsDrinks() {
               } }
               type="button"
               data-testid="start-recipe-btn"
-              onClick={ () => history.push(`/drinks/${id}/in-progress`) }
+              onClick={ () => {
+                startRecipeDrink(id, ingredients);
+                history.push(`/drinks/${id}/in-progress`);
+              } }
             >
-              Start Recipe
+              {
+                isStartedDrink(id)
+                  ? 'Continue Recipe'
+                  : 'Start Recipe'
+              }
             </button>
           </div>
         )

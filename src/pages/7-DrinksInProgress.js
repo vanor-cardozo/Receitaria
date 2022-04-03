@@ -1,8 +1,13 @@
 import React from 'react';
+import FavoriteButtonDrinks from '../components/FavoriteButtonDrinks';
+import ShareButton from '../components/ShareButton';
 
 function DrinksInProgress() {
   return (
-    <h1>Tela de bebidas em progresso.</h1>
+    <section>
+      <ShareButton />
+      <FavoriteButtonDrinks />
+    </section>
   );
 }
 

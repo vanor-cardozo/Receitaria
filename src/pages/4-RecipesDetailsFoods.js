@@ -4,21 +4,29 @@ import { fetchDetailsFoods } from '../utils/fetchDetails';
 import fetchRecomendationsDrinks from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
 import FavoriteButton from '../components/FavoriteButton';
+import { useDetail, useShare, useTypeString } from '../context/DetailContext';
+import isStartedFood from '../services/isStartedLocalStorage';
+import { startRecipeFood } from '../utils/startRecipe';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
   const history = useHistory();
-  const [foodDetail, setFoodDetail] = useState();
+  const { location: { pathname } } = history;
+  const { foodDetail, setFoodDetail } = useDetail();
+  const { setTypeString } = useTypeString();
+  const { setSharePath } = useShare();
   const [recomendations, SetRecomendations] = useState([]);
   // const [video, setVideo] = useState();
 
   useEffect(() => {
     const api = async () => {
       setFoodDetail(await fetchDetailsFoods(id));
+      setTypeString('food');
+      setSharePath(pathname);
       SetRecomendations((await fetchRecomendationsDrinks()));
     };
     api();
-  }, [id]);
+  }, [id, setFoodDetail, setTypeString, setSharePath, pathname]);
 
   const ingredients = [];
   const measure = [];
@@ -59,8 +67,8 @@ function RecipesDetailsFoods() {
               data-testid="recipe-photo"
             />
             <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
-            <ShareButton path={ history.location.pathname } />
-            <FavoriteButton obj={ foodDetail } typeString="food" />
+            <ShareButton />
+            <FavoriteButton />
             <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
             <ul>
               {
@@ -100,9 +108,16 @@ function RecipesDetailsFoods() {
               } }
               type="button"
               data-testid="start-recipe-btn"
-              onClick={ () => history.push(`/foods/${id}/in-progress`) }
+              onClick={ () => {
+                startRecipeFood(id, ingredients);
+                history.push(`/foods/${id}/in-progress`);
+              } }
             >
-              Start Recipe
+              {
+                isStartedFood(id)
+                  ? 'Continue Recipe'
+                  : 'Start Recipe'
+              }
             </button>
           </div>
         )

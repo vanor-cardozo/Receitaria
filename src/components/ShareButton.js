@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
+import { useShare } from '../context/DetailContext';
 
-export default function ShareButton({ path }) {
+export default function ShareButton() {
   const [shareRecipe, setShareRecipe] = useState();
+  const { sharePath: path } = useShare();
+
   return (
     <button
       data-testid="share-btn"
@@ -24,7 +26,3 @@ export default function ShareButton({ path }) {
     </button>
   );
 }
-
-ShareButton.propTypes = {
-  path: PropTypes.string.isRequired,
-};
