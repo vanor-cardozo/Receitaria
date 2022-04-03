@@ -60,7 +60,7 @@ function RecipesDetailsFoods() {
             />
             <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
             <ShareButton path={ history.location.pathname } />
-            <FavoriteButton />
+            <FavoriteButton obj={ foodDetail } typeString="food" />
             <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
             <ul>
               {

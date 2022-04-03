@@ -56,13 +56,13 @@ function RecipesDetailsDrinks() {
             />
             <h2 data-testid="recipe-title">{ drinkDetail.strDrink }</h2>
             <ShareButton path={ history.location.pathname } />
-            <FavoriteButton />
+            <FavoriteButton obj={ drinkDetail } typeString="drink" />
             <p data-testid="recipe-category">{ drinkDetail.strAlcoholic }</p>
             <ul>
               {
                 ingredients.map((ingredient, index) => (
                   <li
-                    key={ ingredient }
+                    key={ index }
                     data-testid={ `${index}-ingredient-name-and-measure` }
                   >
                     {`${ingredient} - ${measure[index]}`}
