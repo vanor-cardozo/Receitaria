@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { fetchRecomendationsFoods } from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
 import fetchDetailsDrinks from '../utils/fetchDetails';
-import { fetchRecomendationsFoods } from '../utils/fetchRecomendations';
+import FavoriteButton from '../components/FavoriteButton';
 
 function RecipesDetailsDrinks() {
   const { id } = useParams();
@@ -55,7 +56,7 @@ function RecipesDetailsDrinks() {
             />
             <h2 data-testid="recipe-title">{ drinkDetail.strDrink }</h2>
             <ShareButton path={ history.location.pathname } />
-            <button data-testid="favorite-btn" type="button">Favorite</button>
+            <FavoriteButton />
             <p data-testid="recipe-category">{ drinkDetail.strAlcoholic }</p>
             <ul>
               {

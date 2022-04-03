@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { fetchDetailsFoods } from '../utils/fetchDetails';
 import fetchRecomendationsDrinks from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
+import FavoriteButton from '../components/FavoriteButton';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -51,10 +52,15 @@ function RecipesDetailsFoods() {
       {
         foodDetail && (
           <div>
-            <img src={ foodDetail.strMealThumb } alt={ id } data-testid="recipe-photo" />
+            <img
+              style={ { width: '150px' } }
+              src={ foodDetail.strMealThumb }
+              alt={ id }
+              data-testid="recipe-photo"
+            />
             <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
             <ShareButton path={ history.location.pathname } />
-            <button data-testid="favorite-btn" type="button">Favorite</button>
+            <FavoriteButton />
             <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
             <ul>
               {
