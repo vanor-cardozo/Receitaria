@@ -2,25 +2,24 @@ import React, { useEffect, useState } from 'react';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import { localStorageFavorite } from '../services/localStorage';
-import { useDetail, useTypeString } from '../context/DetailContext';
+import { useDetail } from '../context/DetailContext';
 
 export default function FavoriteButtonDrinks() {
   const [favoriteOn, setFavoriteOn] = useState(false);
   const { drinkDetail: obj } = useDetail();
-  const { typeString } = useTypeString();
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (storage) {
       const isFavorite = storage
-        .find(({ id, type }) => id === obj.idDrink && type === typeString);
+        .find(({ id, type }) => id === obj.idDrink && type === 'drink');
       if (isFavorite) setFavoriteOn(true);
     }
-  }, [obj.idDrink, typeString]);
+  }, [obj.idDrink]);
 
   function handleClick() {
     setFavoriteOn((prevState) => !prevState);
-    localStorageFavorite(obj, typeString, favoriteOn);
+    localStorageFavorite(obj, 'drink', favoriteOn);
   }
 
   return (

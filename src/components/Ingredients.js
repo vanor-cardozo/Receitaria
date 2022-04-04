@@ -5,7 +5,7 @@ export default function Ingredients({ ingredients, measure }) {
   return (
     <ul>
       {
-        ingredients.map((ingredient, index) => (
+        ingredients && ingredients.map((ingredient, index) => (
           <li
             key={ index }
             data-testid={ `${index}-ingredient-name-and-measure` }
