@@ -59,6 +59,7 @@ function RecipesDetailsDrinks() {
         drinkDetail && (
           <div>
             <img
+              style={ { width: '200px' } }
               src={ drinkDetail.strDrinkThumb }
               alt={ id }
               data-testid="recipe-photo"
