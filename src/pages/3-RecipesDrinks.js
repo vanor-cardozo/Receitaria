@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../utils/fetchDrinks';
 import fetchDrinksDefault from '../utils/fetchDrinksDefault';
+import '../css/Recomendation.css';
 
 function RecipesDrinks() {
   const { setDrinksApi, API, drinksApi, setRedirect } = useContext(RecipesContext);
