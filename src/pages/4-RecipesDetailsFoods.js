@@ -11,7 +11,7 @@ import getIngredients from '../utils/ingredients';
 import getMeasure from '../utils/measure';
 import Ingredients from '../components/Ingredients';
 import styleDetailFood from '../css/RecipeDetailsFoods';
-import Recomendations from '../components/Recomendations';
+import RecomendationDrink from '../components/RecomendationDrink';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -72,7 +72,7 @@ function RecipesDetailsFoods() {
             <p data-testid="instructions">{ foodDetail.strInstructions }</p>
             <iframe title="youtubeDetail" data-testid="video" />
 
-            <Recomendations recomendations={ recomendations } />
+            <RecomendationDrink recomendations={ recomendations } />
 
             <button
               type="button"
