@@ -7,6 +7,7 @@ import { useDetail, useShare, useTypeString } from '../context/DetailContext';
 import FavoriteButtonDrinks from '../components/FavoriteButtonDrinks';
 import { isStartedDrink } from '../services/isStartedLocalStorage';
 import startRecipeDrink from '../utils/startRecipe';
+import RecomendationFood from '../components/RecomendationFood';
 
 function RecipesDetailsDrinks() {
   const { id } = useParams();
@@ -80,21 +81,7 @@ function RecipesDetailsDrinks() {
             </ul>
             <p data-testid="instructions">{ drinkDetail.strInstructions }</p>
             <iframe title="youtubeDetail" data-testid="video" />
-            <ul>
-              {
-                recomendations.map((rec, index) => (
-                  <li
-                    style={ { display: 'inline-block' } }
-                    key={ rec.idMeal }
-                    data-testid={ `${index}-recomendation-card` }
-                  >
-                    <span data-testid={ `${index}-recomendation-title` }>
-                      { ` ${rec.strMeal} - ` }
-                    </span>
-                  </li>
-                ))
-              }
-            </ul>
+            <RecomendationFood recomendations={ recomendations } />
             <button
               style={ {
                 alignItems: 'end',
