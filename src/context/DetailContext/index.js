@@ -8,6 +8,8 @@ export default function DetailProvider({ children }) {
   const [drinkDetail, setDrinkDetail] = useState();
   const [typeString, setTypeString] = useState();
   const [sharePath, setSharePath] = useState();
+  const [favorites, setFavorites] = useState([]);
+  const [filterBy, setFilterBy] = useState('All');
 
   return (
     <DetailContext.Provider
@@ -20,6 +22,10 @@ export default function DetailProvider({ children }) {
         setTypeString,
         sharePath,
         setSharePath,
+        favorites,
+        setFavorites,
+        filterBy,
+        setFilterBy,
       } }
     >
       { children }
@@ -43,6 +49,18 @@ export function useShare() {
   const context = useContext(DetailContext);
   const { sharePath, setSharePath } = context;
   return { sharePath, setSharePath };
+}
+
+export function useFavorites() {
+  const context = useContext(DetailContext);
+  const { favorites, setFavorites } = context;
+  return { favorites, setFavorites };
+}
+
+export function useFilter() {
+  const context = useContext(DetailContext);
+  const { filterBy, setFilterBy } = context;
+  return { filterBy, setFilterBy };
 }
 
 DetailProvider.propTypes = {

@@ -1,51 +1,39 @@
 import React, {/*  useContext  */} from 'react';
-import shareIcon from '../images/shareIcon.svg';
+import ShareButton from './ShareButton';
+import FavoriteButtonDoneRecipe from './FavoriteRecipesButton';
 import '../css/DoneRecipes.css';
 
 function DoneRecipes() {
-  // const { setFoodsApi, foodsApi, API } = useContext(RecipesContext);
+  const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  console.log(favorites);
 
   return (
     <div className="box-container">
       <img
-        // data-testid="${index}-horizontal-image"
         data-testid="0-horizontal-image"
-        src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg"
-        alt=""
+        src={ favorites[0].image }
+        alt={ favorites[0].name }
       />
       <p
         // data-testid="${index}-horizontal-top-text"
         data-testid="0-horizontal-top-text"
       >
-        categoria
+        { favorites[0].category }
       </p>
       <p
         // data-testid="${index}-horizontal-name"
         data-testid="0-horizontal-name"
       >
-        nome
+        { favorites[0].name }
       </p>
       <p
-        // data-testid="${index}-horizontal-done-date"
-        data-testid="0-horizontal-done-date"
-
+        // data-testid="${index}-horizontal-name"
+        data-testid="0-horizontal-top-text"
       >
-        data
+        { favorites[0].nationality }
       </p>
-      <img
-        src={ shareIcon }
-        alt="share"
-        // data-testid="${index}-horizontal-share-btn"
-        data-testid="0-horizontal-share-btn"
-      />
-      <p
-        // data-testid="${index}-horizontal-done-date"
-        data-testid="0-Pasta-horizontal-tag"
-      />
-      <p
-        // data-testid="${index}-horizontal-done-date"
-        data-testid="0-Curry-horizontal-tag"
-      />
+      <ShareButton index="0" />
+      <FavoriteButtonDoneRecipe index="0" />
     </div>
   );
 }

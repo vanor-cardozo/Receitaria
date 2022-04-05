@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
-import { useShare } from '../context/DetailContext';
 
-export default function ShareButton() {
+export default function ShareButtonFavorite({ index, path }) {
   const [shareRecipe, setShareRecipe] = useState();
-  const { sharePath: path } = useShare();
 
   return (
     <button
-      data-testid="share-btn"
+      data-testid={ `${index}-horizontal-share-btn` }
       type="button"
       onClick={ () => {
         setShareRecipe('Link copied!');
@@ -27,3 +26,8 @@ export default function ShareButton() {
     </button>
   );
 }
+
+ShareButtonFavorite.propTypes = {
+  index: PropTypes.string,
+  path: PropTypes.string,
+}.isRequired;
