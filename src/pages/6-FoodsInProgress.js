@@ -25,6 +25,12 @@ function FoodsInProgress() {
     api();
   }, [id, setFoodDetail, setSharePath, pathnameFoodDetail]);
 
+  // useEffect(() => {
+  //   const getChecked = JSON.parse(localStorage.getItem('check'));
+  //   const newOBJ = { ...getChecked, ...checked };
+  //   localStorage.setItem('check', JSON.stringify(newOBJ));
+  // }, [checked]);
+
   let ingredients = [];
   let measure = [];
   if (foodDetail) {
@@ -44,6 +50,24 @@ function FoodsInProgress() {
     if (checkedArrayLength === ingredients.length) {
       return checkedArray.includes(false);
     }
+  }
+
+  function finishRecipe() {
+    const doneOBJ = {
+      id: foodDetail.idMeal,
+      type: 'food',
+      nationality: foodDetail.strArea,
+      category: foodDetail.strCategory,
+      alcoholicOrNot: '',
+      name: foodDetail.strMeal,
+      image: foodDetail.strMealThumb,
+      doneDate: new Date(),
+      tags: [foodDetail.strTags],
+    };
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+    doneRecipes.push(doneOBJ);
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    history.push('/done-recipes');
   }
 
   return (
@@ -80,8 +104,7 @@ function FoodsInProgress() {
               data-testid="finish-recipe-btn"
               type="button"
               disabled={ Disabled() }
-              // disabled={ Object.values(checked) }
-              onClick={ () => (history.push('/done-recipes')) }
+              onClick={ () => finishRecipe() }
             >
               Finish Recipe
             </button>
