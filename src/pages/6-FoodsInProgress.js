@@ -66,7 +66,7 @@ function FoodsInProgress() {
       name: foodDetail.strMeal,
       image: foodDetail.strMealThumb,
       doneDate: new Date(),
-      tags: [foodDetail.strTags],
+      tags: foodDetail.strTags.split(', '),
     };
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
     doneRecipes.push(doneOBJ);
