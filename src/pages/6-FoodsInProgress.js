@@ -25,6 +25,10 @@ function FoodsInProgress() {
     api();
   }, [id, setFoodDetail, setSharePath, pathnameFoodDetail]);
 
+  useEffect(() => {
+    setChecked(JSON.parse(localStorage.getItem('checkFood')) || {});
+  }, []);
+
   // useEffect(() => {
   //   const getChecked = JSON.parse(localStorage.getItem('check'));
   //   const newOBJ = { ...getChecked, ...checked };
@@ -95,6 +99,7 @@ function FoodsInProgress() {
                 setChecked={ setChecked }
                 ingredients={ ingredients }
                 measure={ measure }
+                type="checkFood"
               />
             </div>
             <p data-testid="instructions">

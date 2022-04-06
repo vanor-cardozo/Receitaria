@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes, { string } from 'prop-types';
 
-export default function CheckIngredients({ ingredients, measure, setChecked }) {
+export default function CheckIngredients({ type, ingredients, measure, setChecked }) {
   function isChecked(ingredient) {
-    const isCheck = JSON.parse(localStorage.getItem('check')) || {};
+    const isCheck = JSON.parse(localStorage.getItem(type)) || {};
     if (isCheck[ingredient]) return isCheck[ingredient] === true;
     return false;
   }
@@ -26,9 +26,9 @@ export default function CheckIngredients({ ingredients, measure, setChecked }) {
               id={ ingredient }
               checked={ isChecked(ingredient) }
               onChange={ () => {
-                const getChecked = JSON.parse(localStorage.getItem('check')) || {};
+                const getChecked = JSON.parse(localStorage.getItem(type)) || {};
                 const newOBJ = { ...getChecked, [ingredient]: !getChecked[ingredient] };
-                localStorage.setItem('check', JSON.stringify(newOBJ));
+                localStorage.setItem(type, JSON.stringify(newOBJ));
                 setChecked((prevState) => (
                   { ...prevState, [ingredient]: !prevState[ingredient] }
                 ));

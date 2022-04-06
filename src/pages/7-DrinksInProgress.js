@@ -5,6 +5,7 @@ import FavoriteButtonDrinks from '../components/FavoriteButtonDrinks';
 import ShareButton from '../components/ShareButton';
 import fetchDetailsDrinks from '../utils/fetchDetails';
 import CheckIngredients from '../components/CheckIngredients';
+import getIngredientsAndMeasure from '../utils/getIngredientsDrinks';
 
 function DrinksInProgress() {
   const { drinkDetail, setDrinkDetail } = useDetail();
@@ -23,30 +24,16 @@ function DrinksInProgress() {
     api();
   }, [id, setDrinkDetail, pathnameDrinkDetail, setSharePath]);
 
+  useEffect(() => {
+    setChecked(JSON.parse(localStorage.getItem('checkDrink')) || {});
+  }, []);
+
   const ingredients = [];
   const measure = [];
   const INGREDIENTS_NUMBER = 20;
 
-  const getIngredientsAndMeasure = () => {
-    for (let i = 1; i < INGREDIENTS_NUMBER; i += 1) {
-      const drinkIngredient = drinkDetail[`strIngredient${i}`];
-      if (drinkIngredient != null
-        && drinkIngredient !== ''
-        && drinkIngredient !== ' ') {
-        ingredients.push(drinkDetail[`strIngredient${i}`]);
-      }
-      if (drinkDetail[`strMeasure${i}`] != null) {
-        measure.push(drinkDetail[`strMeasure${i}`]);
-      }
-      // if (drinkDetail[`strIngredient${i}`] != null
-      // && drinkDetail[`strMeasure${i}`] == null) {
-      //   measure.push('');
-      // }
-    }
-  };
-
   if (drinkDetail) {
-    getIngredientsAndMeasure();
+    getIngredientsAndMeasure(drinkDetail, INGREDIENTS_NUMBER, ingredients, measure);
   }
 
   function Disabled() {
@@ -87,6 +74,7 @@ function DrinksInProgress() {
                 setChecked={ setChecked }
                 ingredients={ ingredients }
                 measure={ measure }
+                type="checkDrink"
               />
             </div>
             <p data-testid="instructions">
