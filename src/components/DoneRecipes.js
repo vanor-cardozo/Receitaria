@@ -10,18 +10,23 @@ function DoneRecipes() {
   return (
     <>
       <OptionsRecipes />
-      <div className="box-container">
-        {done.map((doneItem, index) => (
-          <>
-            <span key={ doneItem.id }>
+      {
+        done.map((doneItem, index) => (
+          <div key={ doneItem.id } className="box-container">
+            <a href={ `./${doneItem.type}s/${doneItem.id}` }>
               <img
+                style={ { width: '100px' } }
                 data-testid={ `${index}-horizontal-image` }
                 src={ doneItem.image }
                 alt={ doneItem.name }
               />
-              <h3 data-testid={ `${index}-horizontal-name` }>
-                {doneItem.name}
-              </h3>
+            </a>
+            <div>
+              <a href={ `./${doneItem.type}s/${doneItem.id}` }>
+                <p data-testid={ `${index}-horizontal-name` }>
+                  {doneItem.name}
+                </p>
+              </a>
               <p data-testid={ `${index}-horizontal-done-date` }>
                 {doneItem.doneDate}
               </p>
@@ -46,15 +51,15 @@ function DoneRecipes() {
                   </p>
                 )
               }
-            </span>
-            <ShareButtonFavorite
-              path={ `/${doneItem.type}s/${doneItem.id}` }
-              index={ index }
-            />
-            <FavoriteButtonDoneRecipe index={ index } />
-          </>
-        ))}
-      </div>
+              <ShareButtonFavorite
+                path={ `/${doneItem.type}s/${doneItem.id}` }
+                index={ index }
+              />
+              <FavoriteButtonDoneRecipe index={ index } />
+            </div>
+          </div>
+        ))
+      }
 
     </>
   );
