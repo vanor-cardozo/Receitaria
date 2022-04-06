@@ -49,7 +49,6 @@ function DrinksInProgress() {
       return checkedArray.includes(false);
     }
   }
-  console.log(drinkDetail);
 
   function finishRecipe() {
     const doneOBJ = {

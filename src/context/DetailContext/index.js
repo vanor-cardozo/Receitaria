@@ -10,6 +10,7 @@ export default function DetailProvider({ children }) {
   const [sharePath, setSharePath] = useState();
   const [favorites, setFavorites] = useState([]);
   const [filterBy, setFilterBy] = useState('All');
+  const [doneFilterBy, setDoneFilterBy] = useState('All');
 
   return (
     <DetailContext.Provider
@@ -26,6 +27,8 @@ export default function DetailProvider({ children }) {
         setFavorites,
         filterBy,
         setFilterBy,
+        doneFilterBy,
+        setDoneFilterBy,
       } }
     >
       { children }
@@ -59,8 +62,8 @@ export function useFavorites() {
 
 export function useFilter() {
   const context = useContext(DetailContext);
-  const { filterBy, setFilterBy } = context;
-  return { filterBy, setFilterBy };
+  const { filterBy, setFilterBy, doneFilterBy, setDoneFilterBy } = context;
+  return { filterBy, setFilterBy, doneFilterBy, setDoneFilterBy };
 }
 
 DetailProvider.propTypes = {
