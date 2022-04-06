@@ -7,9 +7,11 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../utils/fetchDrinks';
 import fetchDrinksDefault from '../utils/fetchDrinksDefault';
+import '../css/Recomendation.css';
 
 function RecipesDrinks() {
-  const { setDrinksApi, API, drinksApi, setRedirect } = useContext(RecipesContext);
+  const { setDrinksApi, API, drinksApi, setRedirect,
+    redirect } = useContext(RecipesContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function RecipesDrinks() {
     api();
   }, [setDrinksApi]);
 
-  if (drinksApi && drinksApi.drinks.length === 1) {
+  if (drinksApi && drinksApi.drinks.length === 1 && redirect) {
     const id = drinksApi.drinks[0].idDrink;
     history.push(`/drinks/${id}`);
     setRedirect(false);

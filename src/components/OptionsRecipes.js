@@ -1,25 +1,28 @@
 import React from 'react';
+import { useFilter } from '../context/DetailContext';
 import '../css/OptionRecipes.css';
 
 function OptionsRecipes() {
+  const { setFilterBy } = useFilter();
+
   return (
     <div className="box-container">
       <button
-        onClick={ () => true }
+        onClick={ () => setFilterBy('All') }
         type="button"
         data-testid="filter-by-all-btn"
       >
         All
       </button>
       <button
-        onClick={ () => true }
+        onClick={ () => setFilterBy('food') }
         type="button"
         data-testid="filter-by-food-btn"
       >
         Food
       </button>
       <button
-        onClick={ () => true }
+        onClick={ () => setFilterBy('drink') }
         type="button"
         data-testid="filter-by-drink-btn"
       >
