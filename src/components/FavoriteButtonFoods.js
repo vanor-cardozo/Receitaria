@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import { localStorageFavorite } from '../services/localStorage';
@@ -8,15 +9,16 @@ import { useDetail } from '../context/DetailContext';
 export default function FavoriteButton() {
   const [favoriteOn, setFavoriteOn] = useState(false);
   const { foodDetail: obj } = useDetail();
+  const { id: idURL } = useParams();
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (storage) {
       const isFavorite = storage
-        .find(({ id, type }) => id === obj.idMeal && type === 'food');
+        .find(({ id, type }) => id === obj.idMeal && type === 'food' && idURL === id);
       if (isFavorite) setFavoriteOn(true);
     }
-  }, [obj.idMeal]);
+  }, [obj.idMeal, idURL]);
 
   function handleClick() {
     setFavoriteOn((prevState) => !prevState);
