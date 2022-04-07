@@ -1,40 +1,74 @@
-import React, {/*  useContext  */} from 'react';
-import ShareButton from './ShareButton';
+import React from 'react';
 import FavoriteButtonDoneRecipe from './FavoriteRecipesButton';
 import '../css/DoneRecipes.css';
+import ShareButtonFavorite from './ShareButtonFavorite';
+import { useFilter } from '../context/DetailContext';
+import OptionsRecipesDone from './OptionsRecipesDone';
 
 function DoneRecipes() {
-  const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  console.log(favorites);
+  const done = JSON.parse(localStorage.getItem('doneRecipes'));
+  const { doneFilterBy } = useFilter();
 
   return (
-    <div className="box-container">
-      <img
-        data-testid="0-horizontal-image"
-        src={ favorites[0].image }
-        alt={ favorites[0].name }
-      />
-      <p
-        // data-testid="${index}-horizontal-top-text"
-        data-testid="0-horizontal-top-text"
-      >
-        { favorites[0].category }
-      </p>
-      <p
-        // data-testid="${index}-horizontal-name"
-        data-testid="0-horizontal-name"
-      >
-        { favorites[0].name }
-      </p>
-      <p
-        // data-testid="${index}-horizontal-name"
-        data-testid="0-horizontal-top-text"
-      >
-        { favorites[0].nationality }
-      </p>
-      <ShareButton index="0" />
-      <FavoriteButtonDoneRecipe index="0" />
-    </div>
+    <>
+      <OptionsRecipesDone />
+      {
+        done && done
+          .filter((doneRecipe) => {
+            if (doneFilterBy === 'All') return true;
+            return doneRecipe.type === doneFilterBy;
+          })
+          .map((doneItem, index) => (
+            <div key={ doneItem.id } className="box-container">
+              <a href={ `./${doneItem.type}s/${doneItem.id}` }>
+                <img
+                  style={ { width: '100px' } }
+                  data-testid={ `${index}-horizontal-image` }
+                  src={ doneItem.image }
+                  alt={ doneItem.name }
+                />
+              </a>
+              <div>
+                <a href={ `./${doneItem.type}s/${doneItem.id}` }>
+                  <p data-testid={ `${index}-horizontal-name` }>
+                    {doneItem.name}
+                  </p>
+                </a>
+                <p data-testid={ `${index}-horizontal-done-date` }>
+                  {doneItem.doneDate}
+                </p>
+                {doneItem.tags.map((tag) => (
+                  <p
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                    key={ tag }
+                  >
+                    {tag}
+                  </p>
+                ))}
+                {
+                  doneItem.type === 'food' ? (
+                    <p data-testid={ `${index}-horizontal-top-text` }>
+                      { `${doneItem.nationality} - ${doneItem.category}` }
+                    </p>
+                  ) : (
+                    <p
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      { doneItem.alcoholicOrNot }
+                    </p>
+                  )
+                }
+                <ShareButtonFavorite
+                  path={ `/${doneItem.type}s/${doneItem.id}` }
+                  index={ index }
+                />
+                <FavoriteButtonDoneRecipe index={ index } />
+              </div>
+            </div>
+          ))
+      }
+
+    </>
   );
 }
 

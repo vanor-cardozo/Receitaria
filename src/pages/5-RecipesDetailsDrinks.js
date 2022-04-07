@@ -17,7 +17,6 @@ function RecipesDetailsDrinks() {
   const { setTypeString } = useTypeString();
   const { setSharePath } = useShare();
   const [recomendations, SetRecomendations] = useState([]);
-  // const [video, setVideo] = useState();
 
   useEffect(() => {
     const api = async () => {
@@ -50,7 +49,6 @@ function RecipesDetailsDrinks() {
 
   if (drinkDetail) {
     getIngredientsAndMeasure();
-    // req(foodDetail.strYoutube);
   }
 
   return (
@@ -81,7 +79,6 @@ function RecipesDetailsDrinks() {
               }
             </ul>
             <p data-testid="instructions">{ drinkDetail.strInstructions }</p>
-            <iframe title="youtubeDetail" data-testid="video" />
             <RecomendationFood recomendations={ recomendations } />
             <button
               style={ {

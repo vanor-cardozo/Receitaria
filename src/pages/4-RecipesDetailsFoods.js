@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 import { fetchDetailsFoods } from '../utils/fetchDetails';
 import fetchRecomendationsDrinks from '../utils/fetchRecomendations';
 import ShareButton from '../components/ShareButton';
@@ -21,7 +22,6 @@ function RecipesDetailsFoods() {
   const { setTypeString } = useTypeString();
   const { setSharePath } = useShare();
   const [recomendations, SetRecomendations] = useState([]);
-  // const [video, setVideo] = useState();
 
   useEffect(() => {
     const api = async () => {
@@ -36,17 +36,9 @@ function RecipesDetailsFoods() {
   let ingredients = [];
   let measure = [];
 
-  // const req = async (arg) => {
-  //   const videoURL = `https://www.youtube.com/oembed?url=${arg}&format=json`;
-  //   const { html } = await (await fetch(videoURL)).json();
-  //   setVideo(html);
-  //   console.log(typeof video);
-  // };
-
   if (foodDetail) {
     ingredients = getIngredients(foodDetail);
     measure = getMeasure(foodDetail);
-    // req(foodDetail.strYoutube);
   }
 
   return (
@@ -70,7 +62,12 @@ function RecipesDetailsFoods() {
             <Ingredients ingredients={ ingredients } measure={ measure } />
 
             <p data-testid="instructions">{ foodDetail.strInstructions }</p>
-            <iframe title="youtubeDetail" data-testid="video" />
+            <ReactPlayer
+              title="youtubeDetail"
+              data-testid="video"
+              url={ foodDetail.strYoutube }
+              alt={ foodDetail.strMeal }
+            />
 
             <RecomendationDrink recomendations={ recomendations } />
 
