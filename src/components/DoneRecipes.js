@@ -13,7 +13,7 @@ function DoneRecipes() {
     <>
       <OptionsRecipesDone />
       {
-        done
+        done && done
           .filter((doneRecipe) => {
             if (doneFilterBy === 'All') return true;
             return doneRecipe.type === doneFilterBy;
