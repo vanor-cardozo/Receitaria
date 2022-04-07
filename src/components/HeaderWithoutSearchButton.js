@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import profileIcon from '../images/profileIcon.svg';
+import Profile from '../images/Profile.png';
 import HeaderBar from '../css/HeaderWithout';
 
 function HeaderWithoutSearchButton(props) {
@@ -10,7 +10,7 @@ function HeaderWithoutSearchButton(props) {
   return (
     <HeaderBar>
       <button onClick={ () => history.push('./profile') } type="button">
-        <img data-testid="profile-top-btn" src={ profileIcon } alt="profile" />
+        <img data-testid="profile-top-btn" src={ Profile } alt="profile" />
       </button>
       <p data-testid="page-title">{ title }</p>
     </HeaderBar>

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+
 background: linear-gradient(to left, rgb(87, 87, 87), rgb(54, 54, 54));
 text-align: start;
 
 `;
 
 export const Form = styled.form`
-font-family: oceanwide;
+font-family: arimo;
 display: flex;
 flex-direction: column;
 margin: 30px;

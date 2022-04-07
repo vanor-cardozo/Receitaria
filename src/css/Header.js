@@ -1,8 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
+justify-content: center;
 font-family: oceanwide;
 color: #4A4A4A;
+
+button {
+  border: none;
+  background-color: #FFCC4B;
+}
+
+h2 {
+  margin-top: 10px;
+}
 `;
 
 export const HeaderSearch = styled.section`
@@ -10,7 +20,7 @@ background-color: #FFCC4B;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 30px 30px 20px 30px;
+padding: 20px 20px 20px 30px;
 
 `;
 

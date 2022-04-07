@@ -7,6 +7,16 @@ align-items: center;
 justify-content: space-between;
 bottom: 0;
 padding: 10px;
+
+button {
+  background: #505050;
+  border: none;
+}
+
+img {
+  width: 50px;
+  padding: 2px;
+}
 `;
 
 export default FooterBar;

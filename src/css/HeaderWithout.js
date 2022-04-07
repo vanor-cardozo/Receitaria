@@ -17,7 +17,10 @@ p {
 
 button {
   margin-left: 20px;
+  background-color: #FFCC4B;
+  border: none;
 }
+
 `;
 
 export default HeaderBar;
