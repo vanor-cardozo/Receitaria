@@ -8,6 +8,7 @@ import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../utils/fetchDrinks';
 import fetchDrinksDefault from '../utils/fetchDrinksDefault';
 import '../css/Recomendation.css';
+import Container from '../css/Drinks';
 
 function RecipesDrinks() {
   const { setDrinksApi, API, drinksApi, setRedirect,
@@ -43,28 +44,29 @@ function RecipesDrinks() {
   return (
     <>
       <Header title="Drinks" />
-      <h1>Tela principal de receitas de bebidas.</h1>
       <FiltersRecipe categoryType="drinks" />
-      {
-        drinksApi && drinksApi.drinks.length > 1
-          ? drinks.map((drink, index) => (
-            <Link
-              to={ `/drinks/${drinksApi.drinks[index].idDrink}` }
-              key={ drink.idDrink }
-              data-testid={ `${index}-recipe-card` }
-            >
-              <div>
-                <h4 data-testid={ `${index}-card-name` }>{ drink.strDrink }</h4>
-                <img
-                  src={ drink.strDrinkThumb }
-                  alt={ drink.strDrink }
-                  width="20%"
-                  data-testid={ `${index}-card-img` }
-                />
-              </div>
-            </Link>))
-          : ''
-      }
+      <Container>
+        {
+          drinksApi && drinksApi.drinks.length > 1
+            ? drinks.map((drink, index) => (
+              <Link
+                to={ `/drinks/${drinksApi.drinks[index].idDrink}` }
+                key={ drink.idDrink }
+                data-testid={ `${index}-recipe-card` }
+              >
+                <div>
+                  <img
+                    src={ drink.strDrinkThumb }
+                    alt={ drink.strDrink }
+                    width="20%"
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+                </div>
+              </Link>))
+            : ''
+        }
+      </Container>
       <Footer />
     </>
   );

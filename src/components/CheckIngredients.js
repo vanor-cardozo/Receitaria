@@ -48,3 +48,5 @@ CheckIngredients.propTypes = {
   measure: PropTypes.arrayOf(string),
   setChecked: PropTypes.func,
 }.isRequired;
+
+// implementa css

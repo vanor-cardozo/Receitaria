@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import localStorageLogin from '../services/localStorage';
+import { Banner, Form, Container, Image } from '../css/Login';
+import '../App.css';
+import logo from '../images/logo.png';
+import header from '../images/header.png';
 
 function Login() {
   const history = useHistory();
@@ -23,32 +27,44 @@ function Login() {
   }
 
   return (
-    <form>
-      <h4> Email: </h4>
-      <input
-        type="email"
-        name="email"
-        placeholder="email@email.com"
-        data-testid="email-input"
-        onChange={ ({ target: { value } }) => setEmail(value) }
-      />
-      <h4> Senha: </h4>
-      <input
-        type="password"
-        name="password"
-        placeholder="Senha de 7 dígitos ou mais"
-        data-testid="password-input"
-        onChange={ ({ target: { value } }) => setPassword(value) }
-      />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ isDisabled }
-        onClick={ handleClick }
-      >
-        Entrar
-      </button>
-    </form>
+    <Container>
+      <Banner>
+        <img src={ header } alt="header receitaria" />
+      </Banner>
+      <Form>
+        <p>
+          Bem vindo(a) ao nosso app de receitas,
+          insira seu email e senha para fazer o login.
+          <br />
+          <br />
+          Bom apetite!
+        </p>
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          data-testid="email-input"
+          onChange={ ({ target: { value } }) => setEmail(value) }
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="senha"
+          data-testid="password-input"
+          onChange={ ({ target: { value } }) => setPassword(value) }
+        />
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ isDisabled }
+          onClick={ handleClick }
+        >
+          ENTRAR
+        </button>
+        <Image src={ logo } alt="logo receitaria" />
+
+      </Form>
+    </Container>
   );
 }
 

@@ -1,18 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import profileIcon from '../images/profileIcon.svg';
+import Profile from '../images/Profile.png';
+import HeaderBar from '../css/HeaderWithout';
 
 function HeaderWithoutSearchButton(props) {
   const { title } = props;
   const history = useHistory();
   return (
-    <header>
+    <HeaderBar>
       <button onClick={ () => history.push('./profile') } type="button">
-        <img data-testid="profile-top-btn" src={ profileIcon } alt="profile" />
+        <img data-testid="profile-top-btn" src={ Profile } alt="profile" />
       </button>
-      <h2 data-testid="page-title">{ title }</h2>
-    </header>
+      <p data-testid="page-title">{ title }</p>
+    </HeaderBar>
   );
 }
 
