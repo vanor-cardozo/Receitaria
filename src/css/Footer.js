@@ -14,7 +14,7 @@ button {
 }
 
 img {
-  width: 50px;
+  width: 35px;
   padding: 2px;
 }
 `;

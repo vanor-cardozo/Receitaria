@@ -2,17 +2,27 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
 justify-content: center;
-font-family: oceanwide;
-color: #4A4A4A;
+font-family: arimo;
+color: white;
 
 button {
   border: none;
   background-color: #FFCC4B;
 }
 
-h2 {
-  margin-top: 10px;
+img{
+  width: 45px;
+  background-color: white;
+  border-radius: 30%;
+  padding: 3px;
+  opacity: 90%;
 }
+
+h2 {
+  font-family: mansalva;
+  margin-top: 10px;
+  font-size:50px;
+  text-shadow: #4A4A4A 3px 5px 3px;
 `;
 
 export const HeaderSearch = styled.section`
@@ -20,7 +30,7 @@ background-color: #FFCC4B;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 20px 20px 20px 30px;
+padding: 5px 20px 5px 20px;
 
 `;
 

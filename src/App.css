@@ -16,6 +16,10 @@
 }
 
 @font-face {
+  font-family: mansalva;
+  src: url('./fonts/Mansalva-Regular.ttf');
+}
+@font-face {
   font-family: oceanwide;
   src: url('./fonts/oceanwide-semibold.otf');
 }
