@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player';
@@ -13,6 +14,10 @@ import getMeasure from '../utils/measure';
 import Ingredients from '../components/Ingredients';
 import styleDetailFood from '../css/RecipeDetailsFoods';
 import RecomendationDrink from '../components/RecomendationDrink';
+=======
+import React from 'react';
+import RecipeButton from '../components/RecipeButton';
+>>>>>>> Stashed changes
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -42,6 +47,7 @@ function RecipesDetailsFoods() {
   }
 
   return (
+<<<<<<< Updated upstream
     <main>
       {
         foodDetail && (
@@ -90,6 +96,12 @@ function RecipesDetailsFoods() {
         )
       }
     </main>
+=======
+    <>
+      <h1>Tela principal de receitas de detalhes de comidas.</h1>
+      <RecipeButton />
+    </>
+>>>>>>> Stashed changes
   );
 }
 
