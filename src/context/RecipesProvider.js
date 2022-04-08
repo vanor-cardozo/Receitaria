@@ -5,8 +5,8 @@ import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
   const [API, setAPI] = useState();// const [data, setData] = useState([]);
-  const [foodsApi, setFoodsApi] = useState();
-  const [drinksApi, setDrinksApi] = useState();
+  const [foodsApi, setFoodsApi] = useState({ meals: [] });
+  const [drinksApi, setDrinksApi] = useState({ drinks: [] });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);

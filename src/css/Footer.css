@@ -1,5 +1,5 @@
 .footer {
-  align-items: end;
+  align-items: flex-end;
   bottom: 0;
   display: flex;
   position: fixed;
