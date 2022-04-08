@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { fetchDetailsFoods } from '../utils/fetchDetails';
@@ -13,10 +12,8 @@ import getMeasure from '../utils/measure';
 import Ingredients from '../components/Ingredients';
 import styleDetailFood from '../css/RecipeDetailsFoods';
 import RecomendationDrink from '../components/RecomendationDrink';
-=======
-import React from 'react';
 import RecipeButton from '../components/RecipeButton';
->>>>>>> Stashed changes
+import ShareButton from '../components/ShareButton';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -55,56 +52,50 @@ function RecipesDetailsFoods() {
   }
 
   return (
-<<<<<<< Updated upstream
+    <>
     <main>
-      {
-        foodDetail && (
-          <div>
-            <img
-              style={ { width: '200px' } }
-              src={ foodDetail.strMealThumb }
-              alt={ id }
-              data-testid="recipe-photo"
-            />
-            <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
+      {foodDetail && (
+        <div>
+          <img
+            style={{ width: '200px' }}
+            src={foodDetail.strMealThumb}
+            alt={id}
+            data-testid="recipe-photo" />
+          <h2 data-testid="recipe-title">{foodDetail.strMeal}</h2>
 
-            <ShareButton />
-            <FavoriteButtonFoods />
+          <ShareButton />
+          <FavoriteButtonFoods />
 
-            <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
+          <p data-testid="recipe-category">{foodDetail.strCategory}</p>
 
-            <Ingredients ingredients={ ingredients } measure={ measure } />
+          <ingredients ingredients={ingredients} measure={measure} />
 
-            <p data-testid="instructions">{ foodDetail.strInstructions }</p>
-            <iframe title="youtubeDetail" data-testid="video" />
+          <p data-testid="instructions">{foodDetail.strInstructions}</p>
+          <iframe title="youtubeDetail" data-testid="video" />
 
-            <RecomendationDrink recomendations={ recomendations } />
+          <RecomendationDrink recomendations={recomendations} />
 
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              style={ styleDetailFood }
-              onClick={ () => {
-                startRecipeFood(id, ingredients);
-                history.push(`/foods/${id}/in-progress`);
-              } }
-            >
-              {
-                isStartedFood(id)
-                  ? 'Continue Recipe'
-                  : 'Start Recipe'
-              }
-            </button>
-          </div>
-        )
-      }
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={styleDetailFood}
+            onClick={() => {
+              startRecipeFood(id, ingredients);
+              history.push(`/foods/${id}/in-progress`);
+            } }
+          >
+            {isStartedFood(id)
+              ? 'Continue Recipe'
+              : 'Start Recipe'}
+          </button>
+        </div>
+      )}
     </main>
-=======
     <>
       <h1>Tela principal de receitas de detalhes de comidas.</h1>
       <RecipeButton />
     </>
->>>>>>> Stashed changes
+    </>
   );
 }
 
