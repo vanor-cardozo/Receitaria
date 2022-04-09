@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
 import fetchDrinksIngredients from '../utils/fetchDrinksIngredients';
+import { useFetchIngredient } from '../context/DetailContext';
 
 function ExploreDrinksIngredients() {
   const [drinksIngredients, setDrinksIngredients] = useState([]);
+  const { setFetchByIngredient } = useFetchIngredient();
+  const { push } = useHistory();
   useEffect(() => {
     const drinksIngredientsAPI = async () => {
       const drinksIngredientsResponse = await fetchDrinksIngredients();
@@ -22,15 +26,22 @@ function ExploreDrinksIngredients() {
           <div
             key={ _item.strIngredient1 }
             className="container"
-            data-testid={ `${index}-ingredient-card` }
           >
-            <a href="/drinks" data-testid={ `${index}-recipe-card` }>
+            <button
+              type="button"
+              onClick={ () => {
+                setFetchByIngredient({
+                  fetch: true, ingredient: _item.strIngredient1 });
+                push('/drinks');
+              } }
+              data-testid={ `${index}-ingredient-card` }
+            >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ `https://www.thecocktaildb.com/images/ingredients/${_item.strIngredient1}-Small.png` }
                 alt={ _item.strIngredient1 }
               />
-            </a>
+            </button>
             <span
               data-testid={ `${index}-card-name` }
             >

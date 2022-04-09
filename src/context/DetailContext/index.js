@@ -10,6 +10,9 @@ export default function DetailProvider({ children }) {
   const [sharePath, setSharePath] = useState();
   const [favorites, setFavorites] = useState([]);
   const [filterBy, setFilterBy] = useState('All');
+  const [fetchByIngredient, setFetchByIngredient] = useState({
+    fetch: false, ingredient: '',
+  });
 
   return (
     <DetailContext.Provider
@@ -26,6 +29,8 @@ export default function DetailProvider({ children }) {
         setFavorites,
         filterBy,
         setFilterBy,
+        fetchByIngredient,
+        setFetchByIngredient,
       } }
     >
       { children }
@@ -63,6 +68,11 @@ export function useFilter() {
   return { filterBy, setFilterBy };
 }
 
+export function useFetchIngredient() {
+  const context = useContext(DetailContext);
+  const { fetchByIngredient, setFetchByIngredient } = context;
+  return { fetchByIngredient, setFetchByIngredient };
+}
 DetailProvider.propTypes = {
   children: PropTypes.shape().isRequired,
 };

@@ -2,14 +2,13 @@ import React/* , { useContext, useState } */ from 'react';
 import { useHistory } from 'react-router-dom';
 import '../css/RecipeButton.css';
 
-function RecipeButton(props) {
-  const { ...props } = props;
-  const { location: { pathname } } = props;
+function RecipeButton() {
+  // const { ...props } = props;
+  // const { location: { pathname } } = props;
   const history = useHistory();
   const linksButton = ['/foods/:id/in-progress', '/drinks/:id/in-progress'];
   // const [isVisible, setIsVisible] = useState(true);
-  // const { } = useContext(RecipesContext);// capturar o estado que 
-
+  // const { } = useContext(RecipesContext);// capturar o estado que
 
   return (
     <div className="recipe-button">

@@ -12,8 +12,7 @@ import getMeasure from '../utils/measure';
 import Ingredients from '../components/Ingredients';
 import styleDetailFood from '../css/RecipeDetailsFoods';
 import RecomendationDrink from '../components/RecomendationDrink';
-import RecipeButton from '../components/RecipeButton';
-import ShareButton from '../components/ShareButton';
+// import RecipeButton from '../components/RecipeButton';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -53,48 +52,49 @@ function RecipesDetailsFoods() {
 
   return (
     <>
-    <main>
-      {foodDetail && (
-        <div>
-          <img
-            style={{ width: '200px' }}
-            src={foodDetail.strMealThumb}
-            alt={id}
-            data-testid="recipe-photo" />
-          <h2 data-testid="recipe-title">{foodDetail.strMeal}</h2>
+      <main>
+        {foodDetail && (
+          <div>
+            <img
+              style={ { width: '200px' } }
+              src={ foodDetail.strMealThumb }
+              alt={ id }
+              data-testid="recipe-photo"
+            />
+            <h2 data-testid="recipe-title">{foodDetail.strMeal}</h2>
 
-          <ShareButton />
-          <FavoriteButtonFoods />
+            <ShareButton />
+            <FavoriteButtonFoods />
 
-          <p data-testid="recipe-category">{foodDetail.strCategory}</p>
+            <p data-testid="recipe-category">{foodDetail.strCategory}</p>
 
-          <ingredients ingredients={ingredients} measure={measure} />
+            <Ingredients ingredients={ ingredients } measure={ measure } />
 
-          <p data-testid="instructions">{foodDetail.strInstructions}</p>
-          <iframe title="youtubeDetail" data-testid="video" />
+            <p data-testid="instructions">{foodDetail.strInstructions}</p>
+            <iframe title="youtubeDetail" data-testid="video" />
 
-          <RecomendationDrink recomendations={recomendations} />
+            <RecomendationDrink recomendations={ recomendations } />
 
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            style={styleDetailFood}
-            onClick={() => {
-              startRecipeFood(id, ingredients);
-              history.push(`/foods/${id}/in-progress`);
-            } }
-          >
-            {isStartedFood(id)
-              ? 'Continue Recipe'
-              : 'Start Recipe'}
-          </button>
-        </div>
-      )}
-    </main>
-    <>
-      <h1>Tela principal de receitas de detalhes de comidas.</h1>
-      <RecipeButton />
-    </>
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              style={ styleDetailFood }
+              onClick={ () => {
+                startRecipeFood(id, ingredients);
+                history.push(`/foods/${id}/in-progress`);
+              } }
+            >
+              {isStartedFood(id)
+                ? 'Continue Recipe'
+                : 'Start Recipe'}
+            </button>
+          </div>
+        )}
+      </main>
+      {/* <>
+        <h1>Tela principal de receitas de detalhes de comidas.</h1>
+        <RecipeButton />
+      </> */}
     </>
   );
 }

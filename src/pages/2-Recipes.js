@@ -6,11 +6,15 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoods from '../utils/fetchFoods';
 import fetchFoodsDefault from '../utils/fetchFoodsDefault';
+import { useFetchIngredient } from '../context/DetailContext';
+import fetchByIngredientAPI from '../utils/fetchByIngredientAPI';
 
 function Recipes() {
   const {
     setFoodsApi, foodsApi, API, redirect, setRedirect } = useContext(RecipesContext);
   const history = useHistory();
+
+  const { fetchByIngredient, setFetchByIngredient } = useFetchIngredient();
 
   useEffect(() => {
     if (API) {
@@ -23,12 +27,29 @@ function Recipes() {
   }, [API, setFoodsApi]);
 
   useEffect(() => {
-    const api = async () => {
-      const result = await fetchFoodsDefault();
-      setFoodsApi(result);
-    };
+    const { fetch, ingredient } = fetchByIngredient;
+    let api;
+    if (fetch) {
+      api = async () => {
+        const result = await fetchByIngredientAPI(ingredient, 'food');
+        setFoodsApi(result);
+      };
+    } else {
+      api = async () => {
+        const result = await fetchFoodsDefault();
+        setFoodsApi(result);
+      };
+    }
     api();
-  }, [setFoodsApi]);
+  }, [setFoodsApi, fetchByIngredient, setFetchByIngredient]);
+
+  useEffect(() => () => setFetchByIngredient({ fetch: false, ingredient: '' }),
+    [setFetchByIngredient]); // COMPONENT UNMOUNT
+
+  const teste = 2;
+  useEffect(() => {
+    console.log(teste);
+  }, [teste]);
 
   if (foodsApi && foodsApi.meals.length === 1 && redirect) {
     const id = foodsApi.meals[0].idMeal;

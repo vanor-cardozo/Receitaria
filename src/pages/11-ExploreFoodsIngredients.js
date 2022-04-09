@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
+import { useFetchIngredient } from '../context/DetailContext';
 import fetchFoodsIngredients from '../utils/fetchFoodsIngredients';
 
 function ExploreFoodsIngredients() {
   const [foodsIngredients, setFoodsIngredients] = useState([]);
+  const { setFetchByIngredient } = useFetchIngredient();
+  const { push } = useHistory();
   useEffect(() => {
     const foodsIngredientsAPI = async () => {
       const foodsIngredientsResponse = await fetchFoodsIngredients();
@@ -22,18 +26,22 @@ function ExploreFoodsIngredients() {
           <div
             key={ _item.idIngredient }
             className="container"
-            data-testid={ `${index}-ingredient-card` }
           >
-            <a
-              href="/foods"/* data-testid={ `${index}-recipe-card` } */
-              onClick={ () => true }
+            <button
+              type="button"
+              onClick={ () => {
+                setFetchByIngredient({
+                  fetch: true, ingredient: _item.strIngredient });
+                push('/foods');
+              } }
+              data-testid={ `${index}-ingredient-card` }
             >
               <img
                 data-testid={ `${index}-card-img` }
                 src={ `https://www.themealdb.com/images/ingredients/${_item.strIngredient}-Small.png` }
                 alt={ _item.strIngredient }
               />
-            </a>
+            </button>
             <span
               data-testid={ `${index}-card-name` }
             >
