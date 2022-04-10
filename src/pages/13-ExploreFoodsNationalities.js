@@ -6,7 +6,7 @@ import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
 function ExploreFoodsNationalities() {
   const [options, setOptions] = useState([]);
   const [area, setArea] = useState('American');
-  const [recipes, setRecipes] = useState();
+  const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
@@ -33,7 +33,6 @@ function ExploreFoodsNationalities() {
       fetchAndSetState();
     }
   }, [area]);
-  const test = [1, 2, '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
   return (
     <>
       <HeaderWithoutSearchButton title="Explore Nationalities" />
@@ -50,7 +49,7 @@ function ExploreFoodsNationalities() {
         }
       </select>
       {
-        recipes ? recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
+        recipes.map(({ strMeal, strMealThumb, idMeal }, index) => (
           <Link
             to={ `/foods/${idMeal}` }
             key={ idMeal }
@@ -65,15 +64,6 @@ function ExploreFoodsNationalities() {
               />
             </div>
           </Link>
-        )) : test.map((_, index) => (
-          <div key={ index } data-testid={ `${index}-recipe-card` }>
-            <h4 data-testid={ `${index}-card-name` }>Meal</h4>
-            <img
-              alt={ index }
-              width="20%"
-              data-testid={ `${index}-card-img` }
-            />
-          </div>
         ))
       }
       <Footer />
