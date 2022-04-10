@@ -46,11 +46,6 @@ function Recipes() {
   useEffect(() => () => setFetchByIngredient({ fetch: false, ingredient: '' }),
     [setFetchByIngredient]); // COMPONENT UNMOUNT
 
-  const teste = 2;
-  useEffect(() => {
-    console.log(teste);
-  }, [teste]);
-
   if (foodsApi && foodsApi.meals.length === 1 && redirect) {
     const id = foodsApi.meals[0].idMeal;
     history.push(`/foods/${id}`);
