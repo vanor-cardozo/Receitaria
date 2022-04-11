@@ -1,5 +1,5 @@
-.footer {
-  align-items: flex-end;
+.recipe-button {
+  align-items: end;
   bottom: 0;
   display: flex;
   position: fixed;
