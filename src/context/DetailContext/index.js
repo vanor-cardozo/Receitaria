@@ -13,6 +13,7 @@ export default function DetailProvider({ children }) {
   const [fetchByIngredient, setFetchByIngredient] = useState({
     fetch: false, ingredient: '',
   });
+  const [doneFilterBy, setDoneFilterBy] = useState('All');
 
   return (
     <DetailContext.Provider
@@ -31,6 +32,8 @@ export default function DetailProvider({ children }) {
         setFilterBy,
         fetchByIngredient,
         setFetchByIngredient,
+        doneFilterBy,
+        setDoneFilterBy,
       } }
     >
       { children }
@@ -64,8 +67,8 @@ export function useFavorites() {
 
 export function useFilter() {
   const context = useContext(DetailContext);
-  const { filterBy, setFilterBy } = context;
-  return { filterBy, setFilterBy };
+  const { filterBy, setFilterBy, doneFilterBy, setDoneFilterBy } = context;
+  return { filterBy, setFilterBy, doneFilterBy, setDoneFilterBy };
 }
 
 export function useFetchIngredient() {
