@@ -43,52 +43,48 @@ function RecipesDetailsFoods() {
 
   return (
     <main>
-      {
-        foodDetail && (
-          <div>
-            <img
-              style={ { width: '200px' } }
-              src={ foodDetail.strMealThumb }
-              alt={ id }
-              data-testid="recipe-photo"
-            />
-            <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
+      {foodDetail && (
+        <div>
+          <img
+            style={ { width: '200px' } }
+            src={ foodDetail.strMealThumb }
+            alt={ id }
+            data-testid="recipe-photo"
+          />
+          <h2 data-testid="recipe-title">{foodDetail.strMeal}</h2>
 
-            <ShareButton />
-            <FavoriteButtonFoods />
+          <ShareButton />
+          <FavoriteButtonFoods />
 
-            <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
+          <p data-testid="recipe-category">{foodDetail.strCategory}</p>
 
-            <Ingredients ingredients={ ingredients } measure={ measure } />
+          <Ingredients ingredients={ ingredients } measure={ measure } />
 
-            <p data-testid="instructions">{ foodDetail.strInstructions }</p>
-            <ReactPlayer
-              title="youtubeDetail"
-              data-testid="video"
-              url={ foodDetail.strYoutube }
-              alt={ foodDetail.strMeal }
-            />
+          <p data-testid="instructions">{ foodDetail.strInstructions }</p>
+          <ReactPlayer
+            title="youtubeDetail"
+            data-testid="video"
+            url={ foodDetail.strYoutube }
+            alt={ foodDetail.strMeal }
+          />
 
-            <RecomendationDrink recomendations={ recomendations } />
+          <RecomendationDrink recomendations={ recomendations } />
 
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              style={ styleDetailFood }
-              onClick={ () => {
-                startRecipeFood(id, ingredients);
-                history.push(`/foods/${id}/in-progress`);
-              } }
-            >
-              {
-                isStartedFood(id)
-                  ? 'Continue Recipe'
-                  : 'Start Recipe'
-              }
-            </button>
-          </div>
-        )
-      }
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={ styleDetailFood }
+            onClick={ () => {
+              startRecipeFood(id, ingredients);
+              history.push(`/foods/${id}/in-progress`);
+            } }
+          >
+            {isStartedFood(id)
+              ? 'Continue Recipe'
+              : 'Start Recipe'}
+          </button>
+        </div>
+      )}
     </main>
   );
 }

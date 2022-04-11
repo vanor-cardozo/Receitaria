@@ -8,11 +8,15 @@ import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../utils/fetchDrinks';
 import fetchDrinksDefault from '../utils/fetchDrinksDefault';
 import '../css/Recomendation.css';
+import { useFetchIngredient } from '../context/DetailContext';
+import fetchByIngredientAPI from '../utils/fetchByIngredientAPI';
 
 function RecipesDrinks() {
   const { setDrinksApi, API, drinksApi, setRedirect,
     redirect } = useContext(RecipesContext);
   const history = useHistory();
+
+  const { fetchByIngredient, setFetchByIngredient } = useFetchIngredient();
 
   useEffect(() => {
     if (API) {
@@ -25,12 +29,24 @@ function RecipesDrinks() {
   }, [API, setDrinksApi]);
 
   useEffect(() => {
-    const api = async () => {
-      const result = await fetchDrinksDefault();
-      setDrinksApi(result);
-    };
+    const { fetch, ingredient } = fetchByIngredient;
+    let api;
+    if (fetch) {
+      api = async () => {
+        const result = await fetchByIngredientAPI(ingredient, 'drink');
+        setDrinksApi(result);
+      };
+    } else {
+      api = async () => {
+        const result = await fetchDrinksDefault();
+        setDrinksApi(result);
+      };
+    }
     api();
-  }, [setDrinksApi]);
+  }, [setDrinksApi, fetchByIngredient]);
+
+  useEffect(() => () => setFetchByIngredient({ fetch: false, ingredient: '' }),
+    [setFetchByIngredient]); // COMPONENT UNMOUNT
 
   if (drinksApi && drinksApi.drinks.length === 1 && redirect) {
     const id = drinksApi.drinks[0].idDrink;
