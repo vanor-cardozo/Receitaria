@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import ShareButtonFavorite from './ShareButtonFavorite';
 import FavoriteRecipesButton from './FavoriteRecipesButton';
-import '../css/DoneRecipes.css';
 import { useFavorites, useFilter } from '../context/DetailContext';
 
 function FavoriteRecipes() {

@@ -18,7 +18,7 @@ export default function ShareButton() {
           setShareRecipe();
         }, timer);
       } }
-      src="Share" // bug do teste
+      src="Share"
     >
       { shareRecipe }
       {

@@ -1,9 +1,9 @@
 import React from 'react';
 import FavoriteButtonDoneRecipe from './FavoriteRecipesButton';
-import '../css/DoneRecipes.css';
 import ShareButtonFavorite from './ShareButtonFavorite';
 import { useFilter } from '../context/DetailContext';
 import OptionsRecipesDone from './OptionsRecipesDone';
+import CardDone from '../css/DoneRecipes';
 
 function DoneRecipes() {
   const done = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -12,17 +12,17 @@ function DoneRecipes() {
   return (
     <>
       <OptionsRecipesDone />
-      {
-        done && done
+      <CardDone>
+        {done && done
           .filter((doneRecipe) => {
             if (doneFilterBy === 'All') return true;
             return doneRecipe.type === doneFilterBy;
           })
           .map((doneItem, index) => (
-            <div key={ doneItem.id } className="box-container">
+            <div key={ doneItem.id }>
               <a href={ `./${doneItem.type}s/${doneItem.id}` }>
                 <img
-                  style={ { width: '100px' } }
+                  style={ { width: '200px' } }
                   data-testid={ `${index}-horizontal-image` }
                   src={ doneItem.image }
                   alt={ doneItem.name }
@@ -45,19 +45,17 @@ function DoneRecipes() {
                     {tag}
                   </p>
                 ))}
-                {
-                  doneItem.type === 'food' ? (
-                    <p data-testid={ `${index}-horizontal-top-text` }>
-                      { `${doneItem.nationality} - ${doneItem.category}` }
-                    </p>
-                  ) : (
-                    <p
-                      data-testid={ `${index}-horizontal-top-text` }
-                    >
-                      { doneItem.alcoholicOrNot }
-                    </p>
-                  )
-                }
+                {doneItem.type === 'food' ? (
+                  <p data-testid={ `${index}-horizontal-top-text` }>
+                    {`${doneItem.nationality} - ${doneItem.category}`}
+                  </p>
+                ) : (
+                  <p
+                    data-testid={ `${index}-horizontal-top-text` }
+                  >
+                    {doneItem.alcoholicOrNot}
+                  </p>
+                )}
                 <ShareButtonFavorite
                   path={ `/${doneItem.type}s/${doneItem.id}` }
                   index={ index }
@@ -65,13 +63,11 @@ function DoneRecipes() {
                 <FavoriteButtonDoneRecipe index={ index } />
               </div>
             </div>
-          ))
-      }
+          ))}
+      </CardDone>
 
     </>
   );
 }
 
 export default DoneRecipes;
-
-// para css
