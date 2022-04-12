@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
 justify-content: center;
+text-align: center;
 font-family: arimo;
 color: white;
 
@@ -21,8 +22,9 @@ img{
 h2 {
   font-family: mansalva;
   margin-top: 10px;
-  font-size:50px;
+  font-size:40px;
   text-shadow: #4A4A4A 3px 5px 3px;
+} 
 `;
 
 export const HeaderSearch = styled.section`

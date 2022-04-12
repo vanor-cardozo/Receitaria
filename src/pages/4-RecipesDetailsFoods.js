@@ -11,8 +11,11 @@ import { startRecipeFood } from '../utils/startRecipe';
 import getIngredients from '../utils/ingredients';
 import getMeasure from '../utils/measure';
 import Ingredients from '../components/Ingredients';
-import styleDetailFood from '../css/RecipeDetailsFoods';
 import RecomendationDrink from '../components/RecomendationDrink';
+import { Container, HeaderImg, NameBanner,
+  Card, VideoCard, RecomendationCard } from '../css/RecipeDetailFoods';
+import NavLeft from '../images/NavLeft.svg';
+import NavRight from '../images/NavRight.svg';
 
 function RecipesDetailsFoods() {
   const { id } = useParams();
@@ -45,48 +48,71 @@ function RecipesDetailsFoods() {
     <main>
       {
         foodDetail && (
-          <div>
-            <img
-              style={ { width: '200px' } }
-              src={ foodDetail.strMealThumb }
-              alt={ id }
-              data-testid="recipe-photo"
-            />
-            <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
+          <Container>
 
-            <ShareButton />
-            <FavoriteButtonFoods />
+            <HeaderImg>
+              <img
+                src={ foodDetail.strMealThumb }
+                alt={ id }
+                data-testid="recipe-photo"
+              />
+            </HeaderImg>
 
-            <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
+            <NameBanner>
+              <div>
+                <h2 data-testid="recipe-title">{ foodDetail.strMeal }</h2>
+                <p data-testid="recipe-category">{ foodDetail.strCategory }</p>
+              </div>
+              <div>
+                <ShareButton />
+                <FavoriteButtonFoods />
+              </div>
+            </NameBanner>
 
-            <Ingredients ingredients={ ingredients } measure={ measure } />
+            <Card>
+              <Ingredients ingredients={ ingredients } measure={ measure } />
+              <br />
+              <p>Instructions</p>
+              <p data-testid="instructions">{ foodDetail.strInstructions }</p>
+              <button
+                type="button"
+                data-testid="start-recipe-btn"
+                onClick={ () => {
+                  startRecipeFood(id, ingredients);
+                  history.push(`/foods/${id}/in-progress`);
+                } }
+              >
+                {
+                  isStartedFood(id)
+                    ? 'CONTINUE RECIPE'
+                    : 'START RECIPE'
+                }
+              </button>
+            </Card>
 
-            <p data-testid="instructions">{ foodDetail.strInstructions }</p>
-            <ReactPlayer
-              title="youtubeDetail"
-              data-testid="video"
-              url={ foodDetail.strYoutube }
-              alt={ foodDetail.strMeal }
-            />
-
-            <RecomendationDrink recomendations={ recomendations } />
-
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              style={ styleDetailFood }
-              onClick={ () => {
-                startRecipeFood(id, ingredients);
-                history.push(`/foods/${id}/in-progress`);
-              } }
-            >
-              {
-                isStartedFood(id)
-                  ? 'Continue Recipe'
-                  : 'Start Recipe'
-              }
-            </button>
-          </div>
+            <VideoCard>
+              <ReactPlayer
+                width="360px"
+                height="200px"
+                title="youtubeDetail"
+                data-testid="video"
+                url={ foodDetail.strYoutube }
+                alt={ foodDetail.strMeal }
+              />
+              <RecomendationCard>
+                <img
+                  src={ NavLeft }
+                  alt="previous"
+                />
+                <h2> Recommendation </h2>
+                <img
+                  src={ NavRight }
+                  alt="next"
+                />
+              </RecomendationCard>
+              <RecomendationDrink recomendations={ recomendations } />
+            </VideoCard>
+          </Container>
         )
       }
     </main>

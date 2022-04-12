@@ -16,10 +16,11 @@ export default function RecomendationFood({ recomendations }) {
                 src={ rec.strMealThumb }
                 alt={ rec.strMeal }
               />
-              <p>{ rec.strCategory }</p>
-              <span data-testid={ `${index}-recomendation-title` }>
+              <p data-testid={ `${index}-recomendation-title` }>
                 { rec.strMeal }
-              </span>
+                <br />
+                { rec.strCategory }
+              </p>
             </li>
           ))
         }

@@ -6,6 +6,8 @@ import ShareButton from '../components/ShareButton';
 import fetchDetailsDrinks from '../utils/fetchDetails';
 import CheckIngredients from '../components/CheckIngredients';
 import getIngredientsAndMeasure from '../utils/getIngredientsDrinks';
+import { Container, HeaderImg, NameBanner,
+  Card } from '../css/RecipeDetailsDrinks';
 
 function DrinksInProgress() {
   const { drinkDetail, setDrinkDetail } = useDetail();
@@ -72,41 +74,54 @@ function DrinksInProgress() {
     <section>
       {
         drinkDetail && (
-          <div>
-            <img
-              src={ drinkDetail.strDrinkThumb }
-              alt="strMeal"
-              data-testid="recipe-photo"
-            />
-            <h3 data-testid="recipe-title">
-              { drinkDetail.strDrink }
-            </h3>
-            <ShareButton />
-            <FavoriteButtonDrinks />
-            <p data-testid="recipe-category">
-              { drinkDetail.strAlcoholic }
-            </p>
-            <div>
-              <h3>local para os ingredients</h3>
+          <Container>
+            <HeaderImg>
+              <img
+                src={ drinkDetail.strDrinkThumb }
+                alt="strMeal"
+                data-testid="recipe-photo"
+              />
+            </HeaderImg>
+
+            <NameBanner>
+              <div>
+                <h2 data-testid="recipe-title">
+                  {' '}
+                  { drinkDetail.strDrink }
+                  {' '}
+                </h2>
+                <p data-testid="recipe-category">
+                  {' '}
+                  { drinkDetail.strAlcoholic }
+                  {' '}
+                </p>
+              </div>
+              <div>
+                <ShareButton />
+                <FavoriteButtonDrinks />
+              </div>
+            </NameBanner>
+
+            <Card>
               <CheckIngredients
                 setChecked={ setChecked }
                 ingredients={ ingredients }
                 measure={ measure }
                 type="checkDrink"
               />
-            </div>
-            <p data-testid="instructions">
-              { drinkDetail.strInstructions }
-            </p>
-            <button
-              data-testid="finish-recipe-btn"
-              type="button"
-              disabled={ Disabled() }
-              onClick={ () => finishRecipe() }
-            >
-              Finish Recipe
-            </button>
-          </div>
+              <p data-testid="instructions">
+                { drinkDetail.strInstructions }
+              </p>
+              <button
+                data-testid="finish-recipe-btn"
+                type="button"
+                disabled={ Disabled() }
+                onClick={ () => finishRecipe() }
+              >
+                Finish Recipe
+              </button>
+            </Card>
+          </Container>
         )
       }
     </section>

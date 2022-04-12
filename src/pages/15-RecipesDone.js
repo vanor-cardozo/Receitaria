@@ -7,7 +7,6 @@ function RecipesDone() {
   return (
     <>
       <HeaderWithoutSearchButton title="Done Recipes" />
-      {/* <OptionsRecipes /> */}
       <DoneRecipes />
     </>
   );

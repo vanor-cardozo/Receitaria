@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import '../css/OptionFoodsAndDrinks.css';
+import Container from '../css/Explore';
 
 function OptionsDrinks() {
   const history = useHistory();
 
   return (
-    <div className="box-container">
+    <Container>
       <button
         onClick={ () => history.push('/explore/drinks/ingredients') }
         type="button"
@@ -22,7 +22,7 @@ function OptionsDrinks() {
       >
         Surprise me!
       </button>
-    </div>
+    </Container>
   );
 }
 

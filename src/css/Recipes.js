@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.section`
+
 font-family: arimo;
 font-size: small;
   display: flex;

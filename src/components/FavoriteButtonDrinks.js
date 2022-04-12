@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
+import Favorite from '../images/Favorite.svg';
+import FavoriteRed from '../images/FavoriteRed.svg';
 import { localStorageFavorite } from '../services/localStorage';
 import { useDetail } from '../context/DetailContext';
 
@@ -30,13 +30,13 @@ export default function FavoriteButtonDrinks() {
       type="button"
       onClick={ () => handleClick() }
       src={
-        favoriteOn ? 'blackHeartIcon'
-          : 'whiteHeartIcon'
+        favoriteOn ? 'FavoriteRed'
+          : 'Favorite'
       }
     >
       {
-        favoriteOn ? <img src={ blackHeart } alt="black heart icon" />
-          : <img src={ whiteHeart } alt="white heart icon" />
+        favoriteOn ? <img src={ FavoriteRed } alt="black heart icon" />
+          : <img src={ Favorite } alt="white heart icon" />
       }
     </button>
   );

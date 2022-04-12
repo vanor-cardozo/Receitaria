@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes, { string } from 'prop-types';
+import '../css/Recomendation.css';
 
 export default function RecomendationDrink({ recomendations }) {
   return (
@@ -17,10 +18,11 @@ export default function RecomendationDrink({ recomendations }) {
                 src={ rec.strDrinkThumb }
                 alt={ rec.strDrink }
               />
-              <p>{ rec.strAlcoholic }</p>
-              <span data-testid={ `${index}-recomendation-title` }>
+              <p data-testid={ `${index}-recomendation-title` }>
                 { rec.strDrink }
-              </span>
+                <br />
+                { rec.strAlcoholic }
+              </p>
             </li>
           ))
         }
