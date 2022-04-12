@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
-
+// Inclusão de comentário para gerar novo commit e consequentemente fazer novo push
 function ExploreFoodsNationalities() {
   const [options, setOptions] = useState([]);
   const [area, setArea] = useState('American');
@@ -40,6 +40,9 @@ function ExploreFoodsNationalities() {
         onChange={ ({ target: { value } }) => setArea(value) }
         data-testid="explore-by-nationality-dropdown"
       >
+        <option data-testid="All-option">
+          All
+        </option>
         {
           options.map(({ strArea }) => (
             <option data-testid={ `${strArea}-option` } key={ strArea }>
@@ -55,13 +58,13 @@ function ExploreFoodsNationalities() {
             key={ idMeal }
           >
             <div data-testid={ `${index}-recipe-card` }>
-              <h4 data-testid={ `${index}-card-name` }>{ strMeal }</h4>
               <img
                 src={ strMealThumb }
                 alt={ strMeal }
                 width="20%"
                 data-testid={ `${index}-card-img` }
               />
+              <h4 data-testid={ `${index}-card-name` }>{ strMeal }</h4>
             </div>
           </Link>
         ))
