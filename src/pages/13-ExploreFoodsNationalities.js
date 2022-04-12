@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
-
+// Inclusão de comentário para gerar novo commit e consequentemente fazer novo push
 function ExploreFoodsNationalities() {
   const [options, setOptions] = useState([]);
   const [area, setArea] = useState('American');
