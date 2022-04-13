@@ -4,6 +4,7 @@ import fetchByCategory from '../utils/fetchByCategory';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoodsDefault from '../utils/fetchFoodsDefault';
 import fetchDrinksDefault from '../utils/fetchDrinksDefault';
+import ButtonFilters from '../css/Buttonfilters';
 
 function FiltersRecipe({ categoryType }) {
   const { setDrinksApi, setFoodsApi } = useContext(RecipesContext);
@@ -40,7 +41,7 @@ function FiltersRecipe({ categoryType }) {
   }
 
   return (
-    <>
+    <ButtonFilters>
       {
         categorys.map((category) => (
           <button
@@ -53,7 +54,7 @@ function FiltersRecipe({ categoryType }) {
           </button>
         ))
       }
-    </>
+    </ButtonFilters>
   );
 }
 

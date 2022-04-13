@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import shareIcon from '../images/shareIcon.svg';
+import Share from '../images/Share.svg';
 
 export default function ShareButtonFavorite({ index, path }) {
   const [shareRecipe, setShareRecipe] = useState();
@@ -21,7 +21,7 @@ export default function ShareButtonFavorite({ index, path }) {
     >
       { shareRecipe }
       {
-        !shareRecipe && <img src={ shareIcon } alt="share icon" />
+        !shareRecipe && <img src={ Share } alt="share icon" />
       }
     </button>
   );

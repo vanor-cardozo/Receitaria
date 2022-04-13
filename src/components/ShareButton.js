@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import shareIcon from '../images/shareIcon.svg';
+import Share from '../images/Share.svg';
 import { useShare } from '../context/DetailContext';
 
 export default function ShareButton() {
@@ -18,11 +18,11 @@ export default function ShareButton() {
           setShareRecipe();
         }, timer);
       } }
-      src="shareIcon" // bug do teste
+      src="Share"
     >
       { shareRecipe }
       {
-        !shareRecipe && <img src={ shareIcon } alt="share icon" />
+        !shareRecipe && <img src={ Share } alt="share icon" />
       }
     </button>
   );

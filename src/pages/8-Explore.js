@@ -2,14 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
+import Container from '../css/Explore';
 
 function Explore() {
   const history = useHistory();
   return (
     <>
       <HeaderWithoutSearchButton title="Explore" />
-      <h1>Explore</h1>
-      <div>
+      <Container>
         <button
           type="button"
           data-testid="explore-foods"
@@ -24,7 +24,7 @@ function Explore() {
         >
           Explore Drinks
         </button>
-      </div>
+      </Container>
       <Footer />
     </>
   );

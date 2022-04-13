@@ -15,7 +15,31 @@
   max-height: 80vh;
 }
 
-/*
+@font-face {
+  font-family: mansalva;
+  src: url('./fonts/Mansalva-Regular.ttf');
+}
+@font-face {
+  font-family: oceanwide;
+  src: url('./fonts/oceanwide-semibold.otf');
+}
+
+@font-face {
+  font-family: arimo-regular;
+  src: url('./fonts/Arimo-Regular.ttf');
+}
+
+@font-face {
+  font-family: arimo-semibold;
+  src: url('./fonts/Arimo-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: arimo-bold;
+  src: url('./fonts/Arimo-Bold.ttf');
+}
+
+/* TESTE COMMIT
 #iceLeft {
   animation: clink .8s infinite ease;
   opacity: 0.6;
@@ -66,3 +90,8 @@
     transform: rotate(-10deg);
   }
 }
+
+/* body {
+  background: linear-gradient(to left, rgb(87, 87, 87), rgb(54, 54, 54));
+}
+ */

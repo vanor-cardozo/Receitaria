@@ -8,6 +8,7 @@ import fetchFoods from '../utils/fetchFoods';
 import fetchFoodsDefault from '../utils/fetchFoodsDefault';
 import { useFetchIngredient } from '../context/DetailContext';
 import fetchByIngredientAPI from '../utils/fetchByIngredientAPI';
+import Container from '../css/Recipes';
 
 function Recipes() {
   const {
@@ -58,26 +59,25 @@ function Recipes() {
   return (
     <>
       <Header title="Foods" />
-      <h1>Tela principal de receitas de comidas.</h1>
       <FiltersRecipe categoryType="foods" />
-      {
-        foodsApi && meals.map((food, index) => (
+      <Container>
+        {foodsApi && meals.map((food, index) => (
           <Link
             key={ food.idMeal }
             data-testid={ `${index}-recipe-card` }
             to={ `/foods/${foodsApi.meals[index].idMeal}` }
           >
             <div>
-              <h4 data-testid={ `${index}-card-name` }>{ food.strMeal }</h4>
               <img
                 src={ food.strMealThumb }
                 alt={ food.strMeal }
                 width="20%"
                 data-testid={ `${index}-card-img` }
               />
+              <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
             </div>
-          </Link>))
-      }
+          </Link>))}
+      </Container>
       <Footer />
     </>
   );

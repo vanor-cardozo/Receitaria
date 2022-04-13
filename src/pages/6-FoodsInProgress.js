@@ -7,6 +7,8 @@ import ShareButton from '../components/ShareButton';
 import getIngredients from '../utils/ingredients';
 import getMeasure from '../utils/measure';
 import CheckIngredients from '../components/CheckIngredients';
+import { Container, HeaderImg, NameBanner,
+  Card } from '../css/RecipeDetailFoods';
 
 function FoodsInProgress() {
   const { foodDetail, setFoodDetail } = useDetail();
@@ -78,42 +80,53 @@ function FoodsInProgress() {
     <section>
       {
         foodDetail && (
-          <div>
-            <img
-              src={ foodDetail.strMealThumb }
-              style={ { width: '150px' } }
-              alt="strMeal"
-              data-testid="recipe-photo"
-            />
-            <h3 data-testid="recipe-title">
-              { foodDetail.strMeal }
-            </h3>
-            <ShareButton />
-            <FavoriteButtonFoods />
-            <p data-testid="recipe-category">
-              { foodDetail.strCategory }
-            </p>
-            <div>
-              <h3>local para os ingredients</h3>
+          <Container>
+
+            <HeaderImg>
+              <img
+                src={ foodDetail.strMealThumb }
+                alt="strMeal"
+                data-testid="recipe-photo"
+              />
+            </HeaderImg>
+
+            <NameBanner>
+              <div>
+                <h2 data-testid="recipe-title">
+                  { foodDetail.strMeal }
+                </h2>
+                <p data-testid="recipe-category">
+                  { foodDetail.strCategory }
+                </p>
+              </div>
+              <div>
+                <ShareButton />
+                <FavoriteButtonFoods />
+              </div>
+            </NameBanner>
+
+            <Card>
               <CheckIngredients
                 setChecked={ setChecked }
                 ingredients={ ingredients }
                 measure={ measure }
                 type="checkFood"
               />
-            </div>
-            <p data-testid="instructions">
-              { foodDetail.strInstructions }
-            </p>
-            <button
-              data-testid="finish-recipe-btn"
-              type="button"
-              disabled={ Disabled() }
-              onClick={ () => finishRecipe() }
-            >
-              Finish Recipe
-            </button>
-          </div>
+              <br />
+              <p>Instructions</p>
+              <p data-testid="instructions">
+                { foodDetail.strInstructions }
+              </p>
+              <button
+                data-testid="finish-recipe-btn"
+                type="button"
+                disabled={ Disabled() }
+                onClick={ () => finishRecipe() }
+              >
+                Finish Recipe
+              </button>
+            </Card>
+          </Container>
         )
       }
     </section>

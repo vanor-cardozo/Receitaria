@@ -3,9 +3,3 @@
   flex-direction: row;
   overflow-x: scroll;
 }
-
-img {
-  max-height: 200px;
-  max-width: 200px;
-}
-

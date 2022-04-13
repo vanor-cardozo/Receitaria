@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearchButton from '../components/HeaderWithoutSearchButton';
 import RecipesContext from '../context/RecipesContext';
+import Container from '../css/Explore';
 
 function Profile() {
   const { email } = JSON.parse(localStorage.getItem('user')) || '';
@@ -23,9 +24,8 @@ function Profile() {
   return (
     <>
       <HeaderWithoutSearchButton title="Profile" />
-      <h1>Profile</h1>
-      <p data-testid="profile-email">{ email }</p>
-      <div>
+      <Container>
+        <p data-testid="profile-email">{ email }</p>
         <button
           type="button"
           data-testid="profile-favorite-btn"
@@ -47,7 +47,7 @@ function Profile() {
         >
           Logout
         </button>
-      </div>
+      </Container>
       <Footer />
     </>
   );

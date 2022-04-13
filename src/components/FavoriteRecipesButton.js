@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import blackHeart from '../images/blackHeartIcon.svg';
+import Favorite from '../images/FavoriteRed.svg';
 // import { localStorageFavorite } from '../services/localStorage';
 
 export default function FavoriteRecipesButton({ index, setFavorites, favorites }) {
@@ -20,7 +20,7 @@ export default function FavoriteRecipesButton({ index, setFavorites, favorites }
       onClick={ () => removeFavorites() }
       src="blackHeartIcon"
     >
-      <img src={ blackHeart } alt="black heart icon" />
+      <img src={ Favorite } alt="black heart icon" />
     </button>
   );
 }
